@@ -91,8 +91,8 @@
     }
 
     .glassContainer {
-      width: 20vw;
-      height: 70vh;
+      width: 30vw;
+      height: 65vh;
       border: 0.2px solid #ddd !important;
       z-index: 1;
       position: fixed;
@@ -122,6 +122,7 @@
       justify-content: center;
       width: 100vw;
       height: 100vh;
+      margin-top: -10vh;
       align-items: center;
       z-index: 0;
 
@@ -154,14 +155,18 @@
       
     </div>
 
-    <video style="width: 100vw;" autoplay muted loop>
-      <source src="background1.mp4" type="video/mp4">
+    <video id="homepagevid" style="width: 100vw;" autoplay muted loop>
+      <source src="background.mp4" type="video/mp4">
 
       Your browser does not support the video tag.
     </video>
   </div>
 
+<script>
+let video = document.getElementById("homepagevid");
+video.playbackRate = 0.30;
 
+</script>
   <script>
     let start = new Date().getTime();
 
