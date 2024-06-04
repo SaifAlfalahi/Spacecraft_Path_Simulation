@@ -188,7 +188,7 @@
         document.body.innerHTML = ''; // Clear the body content
         var warningMessage = document.createElement('div');
         warningMessage.id = 'warning-message';
-        warningMessage.innerHTML = '<h1>Please use in landscape mode. Thank you!</p>';
+        warningMessage.innerHTML = '<h1>Please access the website on a laptop / PC. Thank you!</p>';
         document.body.appendChild(warningMessage);
         warningMessage.style.display = 'block';
       }
@@ -196,15 +196,6 @@
       if (checkDeviceWidthAndOrientation()) {
         showWarningMessage();
       }
-
-      // Optional: Re-check on window resize
-      window.addEventListener("resize", function () {
-        if (checkDeviceWidthAndOrientation()) {
-          showWarningMessage();
-        } else {
-          location.reload(); // Reload the page if the conditions are met
-        }
-      });
     });
 
 
