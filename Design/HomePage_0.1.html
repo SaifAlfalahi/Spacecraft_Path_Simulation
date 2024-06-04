@@ -32,56 +32,63 @@
     }
 
     @keyframes fall-1 {
-  0% {
-    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
-    opacity: 0;
-  }
-  5% {
-    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
-    opacity: 0;
-  }
-}
- 
-@keyframes fall-2 {
-  0% {
-    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
-    opacity: 0;
-  }
-  10% {
-    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
-    opacity: 0;
-  }
-}
- 
-@keyframes fall-3 {
-  0% {
-    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
-    opacity: 0;
-  }
-  15% {
-    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
-    opacity: 0;
-  }
-}
+      0% {
+        transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
+        opacity: 0;
+      }
 
-.btn-outline-light{
-  width: 16vw;
-  height: 6vh;
-  font-size: 1.2vw;
-  overflow: hidden;
-}
+      5% {
+        transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall-2 {
+      0% {
+        transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+        opacity: 0;
+      }
+
+      10% {
+        transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall-3 {
+      0% {
+        transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+        opacity: 0;
+      }
+
+      15% {
+        transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .btn-outline-light {
+      width: 16vw;
+      height: 6vh;
+      font-size: 1.2vw;
+      overflow: hidden;
+    }
+
     body {
       color: white;
       padding: 0px;
@@ -104,6 +111,7 @@
       backdrop-filter: blur(0.3vw);
       padding: 2vw;
     }
+
     .glassContainer2 {
       width: 20vw;
       height: 70vh;
@@ -130,7 +138,7 @@
 
     }
 
-    .titleFont{
+    .titleFont {
       font-size: 1.5vw;
     }
   </style>
@@ -154,7 +162,7 @@
       <div>
         <p class="titleFont">Something cool</p>
       </div>
-      
+
     </div>
 
     <video id="homepagevid" style="width: 100vw;" autoplay muted loop>
@@ -164,12 +172,42 @@
     </video>
   </div>
 
-<script>
-let video = document.getElementById("homepagevid");
-video.playbackRate = 0.30;
-
-</script>
   <script>
+    let video = document.getElementById("homepagevid");
+    video.playbackRate = 0.30;
+
+  </script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+      function checkDeviceWidthAndOrientation() {
+        return window.innerWidth < window.innerHeight;
+      }
+
+      function showWarningMessage() {
+        document.body.innerHTML = ''; // Clear the body content
+        var warningMessage = document.createElement('div');
+        warningMessage.id = 'warning-message';
+        warningMessage.innerHTML = '<h1>Please use in landscape mode. Thank you!</p>';
+        document.body.appendChild(warningMessage);
+        warningMessage.style.display = 'block';
+      }
+
+      if (checkDeviceWidthAndOrientation()) {
+        showWarningMessage();
+      }
+
+      // Optional: Re-check on window resize
+      window.addEventListener("resize", function () {
+        if (checkDeviceWidthAndOrientation()) {
+          showWarningMessage();
+        } else {
+          location.reload(); // Reload the page if the conditions are met
+        }
+      });
+    });
+
+
     let start = new Date().getTime();
 
     const originPosition = { x: 0, y: 0 };
@@ -214,8 +252,8 @@ video.playbackRate = 0.30;
       const star = document.createElement("span"),
         color = selectRandom(config.colors);
       star.className = "star";
-      star.style.left = px(position.x+22);
-      star.style.top = px(position.y+22 );
+      star.style.left = px(position.x + 22);
+      star.style.top = px(position.y + 22);
       star.style.fontSize = selectRandom(config.sizes);
       star.style.color = `rgb(${color})`;
       star.style.textShadow = `0px 0px 1.5rem rgb(${color} / 0.5)`;
