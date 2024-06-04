@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Spacecraft_Path_Simulation
-#SAASST
-=======
 # Spacecraft Path Simulation Web Application
 
 ## Overview
