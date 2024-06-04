@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    background: black;
+    overflow: hidden;
+}
+
+.solar-system {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('stars.jpg') repeat;
+}
+
+.sun {
+    width: 100px;
+    height: 100px;
+    background: yellow;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+}
+
+.orbit {
+    position: absolute;
+    border: 1px dashed gray;
+    border-radius: 50%;
+    transform-origin: center;
+    animation: orbit 20s linear infinite;
+}
+
+.mercury-orbit { width: 200px; height: 200px; animation-duration: 2.41096s; }
+.venus-orbit { width: 300px; height: 300px; animation-duration: 6.16438s; }
+.earth-orbit { width: 400px; height: 400px; animation-duration: 10s; }
+.mars-orbit { width: 500px; height: 500px; animation-duration: 18.8219s; }
+.jupiter-orbit { width: 700px; height: 700px; animation-duration: 118.7123s; }
+.saturn-orbit { width: 850px; height: 850px; animation-duration: 294.76712s; }
+.uranus-orbit { width: 1000px; height: 1000px; animation-duration: 840.73973s; }
+.neptune-orbit { width: 1150px; height: 1150px; animation-duration: 1649.041s; }
+
+.planet {
+    width: 20px;
+    height: 20px;
+    background: gray;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+}
+
+.mercury { background: gray; width: 20px; height: 20px; margin-left: -10px; margin-top: -110px; }
+.venus { background: orange; width: 30px; height: 30px; margin-left: -15px; margin-top: -165px; }
+.earth { background: blue; width: 35px; height: 35px; margin-left: -17.5px; margin-top: -217.5px; }
+.mars { background: red; width: 25px; height: 25px; margin-left: -12.5px; margin-top: -262.5px; }
+.jupiter { background: brown; width: 70px; height: 70px; margin-left: -35px; margin-top: -385px; }
+.saturn { background: gold; width: 60px; height: 60px; margin-left: -30px; margin-top: -455px; }
+.uranus { background: lightblue; width: 50px; height: 50px; margin-left: -25px; margin-top: -525px; }
+.neptune { background: darkblue; width: 50px; height: 50px; margin-left: -25px; margin-top: -600px; }
+
+@keyframes orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.transfer-calculation {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: x-large;
+}
+
+
+#result {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
