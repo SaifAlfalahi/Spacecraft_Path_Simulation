@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# Spacecraft_Path_Simulation
+#SAASST
+=======
 # Spacecraft Path Simulation Web Application
 
 ## Overview
@@ -55,3 +59,4 @@ For any questions or suggestions, please reach out to [Your Contact Information]
 ---
 
 Enjoy exploring the spacecraft's journey from Earth to Mars and learning about space travel!
+>>>>>>> 11ccdc7c510d1f5dcabb45fb9adb63793881d049
