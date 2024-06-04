@@ -17,98 +17,104 @@
 
 
     .star {
+      background-image: url('sparkler.png');
+      background-size: contain;
       position: absolute;
       z-index: 2;
       color: white;
-      font-size: 1rem;
+      width: 1.2rem;
+      height: 1.2rem;
       animation-duration: 1500ms;
       animation-fill-mode: forwards;
       pointer-events: none;
     }
 
     @keyframes fall-1 {
-      0% {
-        transform: translate(0px, 0px) scale(0.25);
-        opacity: 0;
-      }
+  0% {
+    transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
+    opacity: 0;
+  }
+  5% {
+    transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
+    opacity: 0;
+  }
+}
+ 
+@keyframes fall-2 {
+  0% {
+    transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
+    opacity: 0;
+  }
+}
+ 
+@keyframes fall-3 {
+  0% {
+    transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+    opacity: 0;
+  }
+  15% {
+    transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
+    opacity: 0;
+  }
+}
 
-      5% {
-        transform: translate(10px, -10px) scale(1);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate(25px, 200px) scale(1);
-        opacity: 0;
-      }
-    }
-
-    @keyframes fall-2 {
-      0% {
-        transform: translate(0px, 0px) scale(0.25);
-        opacity: 0;
-      }
-
-      10% {
-        transform: translate(-10px, -5px) scale(1);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate(-10px, 160px) scale(0.25);
-        opacity: 0;
-      }
-    }
-
-    @keyframes fall-3 {
-      0% {
-        transform: translate(0px, 0px) scale(0.5);
-        opacity: 0;
-      }
-
-      15% {
-        transform: translate(7px, 5px) scale(1);
-        opacity: 1;
-      }
-
-      100% {
-        transform: translate(20px, 120px) scale(0.5);
-        opacity: 0;
-      }
-    }
-
+.btn-outline-light{
+  width: 16vw;
+  height: 6vh;
+  font-size: 1.2vw;
+  overflow: hidden;
+}
     body {
       color: white;
       padding: 0px;
       margin: 0px;
       overflow: hidden;
       height: 100vh;
+      cursor: url('cursor.png'), auto;
 
     }
 
     .glassContainer {
-      width: 30vw;
-      height: 50vh;
+      width: 20vw;
+      height: 70vh;
       border: 0.2px solid #ddd !important;
       z-index: 1;
       position: fixed;
       border-radius: 1vw;
-      top: 20vh;
-      left: 10vw;
+      top: 10vh;
+      left: 4vw;
       backdrop-filter: blur(0.3vw);
       padding: 2vw;
     }
     .glassContainer2 {
-      width: 30vw;
-      height: 50vh;
+      width: 20vw;
+      height: 70vh;
       border: 0.2px solid #ddd !important;
       z-index: 1;
       position: fixed;
       border-radius: 1vw;
-      top: 20vh;
-      right: 10vw;
+      top: 10vh;
+      right: 4vw;
       backdrop-filter: blur(0.3vw);
       padding: 2vw;
+      cursor: url('cursor.png'), auto;
+
     }
 
     .containsVid {
@@ -122,7 +128,7 @@
     }
 
     .titleFont{
-      font-size: 2vw;
+      font-size: 1.5vw;
     }
   </style>
 </head>
@@ -134,16 +140,16 @@
     <div class="d-flex gap-2 glassContainer flex-column justify-content-between">
 
       <div>
-        <p class="titleFont">Welcome to website</p>
+        <p class="titleFont">Welcome (Probably)</p>
       </div>
       <div class="d-grid gap-2 w-100">
-        <button class="btn btn-outline-light btn-lg">Start your Space Journey!</button>
+        <button class="btn btn-outline-light">Start your Space Journey!</button>
       </div>
     </div>
     <div class="d-flex gap-2 glassContainer2 flex-column justify-content-between">
 
       <div>
-        <p class="titleFont">Our Planets</p>
+        <p class="titleFont">Something cool</p>
       </div>
       
     </div>
@@ -169,18 +175,18 @@
 
     const config = {
       starAnimationDuration: 1500,
-      minimumTimeBetweenStars: 50,
+      minimumTimeBetweenStars: 40,
       minimumDistanceBetweenStars: 75,
       glowDuration: 75,
       maximumGlowPointSpacing: 10,
       colors: ["249 146 253", "252 254 255"],
-      sizes: ["0.001rem", "0.00005rem", "0.0001rem"],
+      sizes: ["1rem", "1rem", "1rem"],
       animations: ["fall-1", "fall-2", "fall-3"]
     }
 
     let count = 0;
-    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1) - 0.7) + min,
-      selectRandom = items => items[rand(0, items.length - 1) - 0.7];
+    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+      selectRandom = items => items[rand(0, items.length - 1)];
 
     const withUnit = (value, unit) => `${value}${unit}`,
       px = value => withUnit(value, "px"),
@@ -200,9 +206,9 @@
     const createStar = position => {
       const star = document.createElement("span"),
         color = selectRandom(config.colors);
-      star.className = "star fa-solid fa-star";
-      star.style.left = px(position.x);
-      star.style.top = px(position.y);
+      star.className = "star";
+      star.style.left = px(position.x+22);
+      star.style.top = px(position.y+22 );
       star.style.fontSize = selectRandom(config.sizes);
       star.style.color = `rgb(${color})`;
       star.style.textShadow = `0px 0px 1.5rem rgb(${color} / 0.5)`;
@@ -227,25 +233,6 @@
       1
     );
 
-    /* --  
-     
-    The following is an explanation for the "createGlow" function below:
-     
-    I didn't cover this in my video, but I ran into an issue where moving the mouse really quickly caused gaps in the glow effect. Kind of like this:
-     
-    *   *       *       *    *      *    🖱️
-     
-    instead of:
-     
-    *************************************🖱️
-     
-    To solve this I sort of "backfilled" some additional glow points by evenly spacing them in between the current point and the last one. I found this approach to be more visually pleasing than one glow point spanning the whole gap.
-     
-    The "quantity" of points is based on the config property "maximumGlowPointSpacing".
-     
-    My best explanation for why this is happening is due to the mousemove event only firing every so often. I also don't think this fix was totally necessary, but it annoyed me that it was happening so I took on the challenge of trying to fix it.
-     
-    -- */
     const createGlow = (last, current) => {
       const distance = calcDistance(last, current),
         quantity = determinePointQuantity(distance);
