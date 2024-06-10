@@ -437,6 +437,14 @@
       });
 
       $('#ClickedButton').click(function () {
+        setTimeout(function () {
+          $('#homepagevid').attr('loop', false); // Disable loop
+          $('#homepagevid source').attr('src', 'journey.mp4');
+          $('#homepagevid')[0].load();
+          $('#homepagevid')[0].pause();
+        }, 1000);
+        -
+
         $('#timerModal').modal('show');
         var timer = 3;
         var interval = setInterval(function () {
@@ -446,9 +454,7 @@
             clearInterval(interval);
             $('#timerModal').modal('hide');
             setTimeout(function () {
-              $('#homepagevid').attr('loop', false); // Disable loop
-              $('#homepagevid source').attr('src', 'journey.mp4');
-              $('#homepagevid')[0].load();
+              $('#homepagevid')[0].play();
             }, 0);
           }
         }, 1000);
@@ -467,7 +473,7 @@
         document.body.innerHTML = ''; // Clear the body content
         var warningMessage = document.createElement('div');
         warningMessage.id = 'warning-message';
-        warningMessage.innerHTML = '<h1>Please access the website on a laptop / PC. Thank you!</p>';
+        warningMessage.innerHTML = '<h1>Please use in landscape mode. Thank you!</p>';
         document.body.appendChild(warningMessage);
         warningMessage.style.display = 'block';
       }
@@ -475,6 +481,15 @@
       if (checkDeviceWidthAndOrientation()) {
         showWarningMessage();
       }
+
+      // Optional: Re-check on window resize
+      window.addEventListener("resize", function () {
+        if (checkDeviceWidthAndOrientation()) {
+          showWarningMessage();
+        } else {
+          location.reload(); // Reload the page if the conditions are met
+        }
+      });
     });
 
 
