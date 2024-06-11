@@ -14,210 +14,228 @@
   <style>
     @import url("https://fonts.googleapis.com/css?family=Raleway");
 
-:root {
-  --glow-color: hsl(0, 0%, 100%);
-}
+    :root {
+      --glow-color: hsl(0, 0%, 100%);
+    }
+
     .glowing-btn {
-  position: relative;
-  color: var(--glow-color);
-  cursor: pointer;
+      position: relative;
+      color: var(--glow-color);
+      cursor: pointer;
 
-  border: 0.3vw solid var(--glow-color); 
-  border-radius: 1vw;
-  background: none;
-  perspective: 2em;
-  font-family: "Raleway", sans-serif;
-  font-size: 2vw;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  font-weight: 750;
-  letter-spacing: 0.3vw;
-  margin-bottom: 2vh;
+      border: 0.3vw solid var(--glow-color);
+      border-radius: 1vw;
+      background: none;
+      perspective: 2em;
+      font-family: "Raleway", sans-serif;
+      font-size: 2vw;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      font-weight: 750;
+      letter-spacing: 0.3vw;
+      margin-bottom: 2vh;
 
-  -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
-  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
-  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
-  animation: border-flicker 2s linear infinite;
-}
+      -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+      -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+      box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+      animation: border-flicker 2s linear infinite;
+    }
 
-.glowing-txt {
-  float: left;
-  margin-right: 0;
-  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em var(--glow-color);
-  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em var(--glow-color);
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
-  animation: text-flicker 3s linear infinite;
-}
+    .glowing-txt {
+      float: left;
+      margin-right: 0;
+      -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+      -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+      text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+      animation: text-flicker 3s linear infinite;
+    }
 
-.faulty-letter {
-  opacity: 0.5;
-  animation: faulty-flicker 2s linear infinite;
-}
+    .faulty-letter {
+      opacity: 0.5;
+      animation: faulty-flicker 2s linear infinite;
+    }
 
-.glowing-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0.7;
-  filter: blur(1em);
-  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
-  background: var(--glow-color);
-  pointer-events: none;
-}
+    .glowing-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.7;
+      filter: blur(1em);
+      transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+      background: var(--glow-color);
+      pointer-events: none;
+    }
 
-.glowing-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  z-index: -1;
-  background-color: var(--glow-color);
-  box-shadow: 0 0 1em 0.2em var(--glow-color);
-  transition: opacity 100ms linear;
-  border-radius: 0.2vw;
-}
+    .glowing-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      z-index: -1;
+      background-color: var(--glow-color);
+      box-shadow: 0 0 1em 0.2em var(--glow-color);
+      transition: opacity 100ms linear;
+      border-radius: 0.2vw;
+    }
 
-.glowing-btn:hover {
-  color: rgba(0, 0, 0, 0.8);
-  text-shadow: none;
-  animation: none;
-  border-radius: 0.5em;
-}
+    .glowing-btn:hover {
+      color: rgba(0, 0, 0, 0.8);
+      text-shadow: none;
+      animation: none;
+      border-radius: 0.5em;
+    }
 
-.glowing-btn:hover .glowing-txt {
-  animation: none;
-}
+    .glowing-btn:hover .glowing-txt {
+      animation: none;
+    }
 
-.glowing-btn:hover .faulty-letter {
-  animation: none;
-  text-shadow: none;
-  opacity: 1;
-}
+    .glowing-btn:hover .faulty-letter {
+      animation: none;
+      text-shadow: none;
+      opacity: 1;
+    }
 
-.glowing-btn:hover:before {
-  filter: blur(1.5em);
-  opacity: 1;
-}
+    .glowing-btn:hover:before {
+      filter: blur(1.5em);
+      opacity: 1;
+    }
 
-.glowing-btn:hover:after {
-  opacity: 1;
-}
+    .glowing-btn:hover:after {
+      opacity: 1;
+    }
 
-@keyframes faulty-flicker {
-  0% {
-    opacity: 0.1;
-  }
-  2% {
-    opacity: 0.1;
-  }
-  4% {
-    opacity: 0.5;
-  }
-  19% {
-    opacity: 0.5;
-  }
-  21% {
-    opacity: 0.1;
-  }
-  23% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.5;
-  }
-  83% {
-    opacity: 0.4;
-  }
+    @keyframes faulty-flicker {
+      0% {
+        opacity: 0.1;
+      }
 
-  87% {
-    opacity: 1;
-  }
-}
+      2% {
+        opacity: 0.1;
+      }
 
-@keyframes text-flicker {
-  0% {
-    opacity: 0.1;
-  }
+      4% {
+        opacity: 0.5;
+      }
 
-  2% {
-    opacity: 1;
-  }
+      19% {
+        opacity: 0.5;
+      }
 
-  8% {
-    opacity: 0.1;
-  }
+      21% {
+        opacity: 0.1;
+      }
 
-  9% {
-    opacity: 1;
-  }
+      23% {
+        opacity: 1;
+      }
 
-  12% {
-    opacity: 0.1;
-  }
-  20% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0.3;
-  }
-  30% {
-    opacity: 1;
-  }
+      80% {
+        opacity: 0.5;
+      }
 
-  70% {
-    opacity: 0.7;
-  }
-  72% {
-    opacity: 0.2;
-  }
+      83% {
+        opacity: 0.4;
+      }
 
-  77% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0.9;
-  }
-}
+      87% {
+        opacity: 1;
+      }
+    }
 
-@keyframes border-flicker {
-  0% {
-    opacity: 0.1;
-  }
-  2% {
-    opacity: 1;
-  }
-  4% {
-    opacity: 0.1;
-  }
+    @keyframes text-flicker {
+      0% {
+        opacity: 0.1;
+      }
 
-  8% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+      2% {
+        opacity: 1;
+      }
 
-@media only screen and (max-width: 600px) {
-  .glowing-btn{
-    font-size: 1em;
-  }
-}
+      8% {
+        opacity: 0.1;
+      }
+
+      9% {
+        opacity: 1;
+      }
+
+      12% {
+        opacity: 0.1;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      25% {
+        opacity: 0.3;
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      70% {
+        opacity: 0.7;
+      }
+
+      72% {
+        opacity: 0.2;
+      }
+
+      77% {
+        opacity: 0.9;
+      }
+
+      100% {
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes border-flicker {
+      0% {
+        opacity: 0.1;
+      }
+
+      2% {
+        opacity: 1;
+      }
+
+      4% {
+        opacity: 0.1;
+      }
+
+      8% {
+        opacity: 1;
+      }
+
+      70% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .glowing-btn {
+        font-size: 1em;
+      }
+    }
+
     .glow-point {
       position: absolute;
       box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--glow-rgb));
@@ -316,7 +334,7 @@
       left: 4vw;
       backdrop-filter: blur(0.3vw);
       padding: 2vw;
-      
+
     }
 
     .glassContainer2 {
@@ -381,8 +399,10 @@
         <p class="titleFont">Welcome (Probably)</p>
       </div>
       <div class="d-grid gap-2 w-100">
-        
-        <button id="ClickedButton" class='glowing-btn'><span class='glowing-txt'>S<span class='faulty-letter'>t</span>a</span><span class='faulty-letter'>r</span><span class="glowing-txt">t</span></button>
+
+        <button id="ClickedButton" class='glowing-btn'><span class='glowing-txt'>S<span
+              class='faulty-letter'>t</span>a</span><span class='faulty-letter'>r</span><span
+            class="glowing-txt">t</span></button>
       </div>
     </div>
     <div class="d-flex gap-2 gc glassContainer2 flex-column justify-content-between">
@@ -442,10 +462,10 @@
           $('#homepagevid source').attr('src', 'journey.mp4');
           $('#homepagevid')[0].load();
           $('#homepagevid')[0].pause();
-        }, 1000);
+        }, 500);
         -
 
-        $('#timerModal').modal('show');
+          $('#timerModal').modal('show');
         var timer = 3;
         var interval = setInterval(function () {
           timer--;
@@ -455,19 +475,23 @@
             $('#timerModal').modal('hide');
             setTimeout(function () {
               $('#homepagevid')[0].play();
+              $('#homepagevid').on('ended', function () {
+                window.location.href = 'Simulation_Selector.html';
+              });
             }, 0);
           }
         }, 1000);
+
       });
     });
 
   </script>
   <script>
 
-     document.addEventListener("DOMContentLoaded", function () {
-       function checkDeviceWidthAndOrientation() {
-         return window.innerWidth < window.innerHeight;
-       }
+    document.addEventListener("DOMContentLoaded", function () {
+      function checkDeviceWidthAndOrientation() {
+        return window.innerWidth < window.innerHeight;
+      }
 
       function showWarningMessage() {
         document.body.innerHTML = ''; // Clear the body content
