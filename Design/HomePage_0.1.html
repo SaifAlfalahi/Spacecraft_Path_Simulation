@@ -97,6 +97,7 @@
       text-shadow: none;
       animation: none;
       border-radius: 0.5em;
+      cursor: url("cursor2.png"), auto;
     }
 
     .glowing-btn:hover .glowing-txt {
@@ -314,6 +315,36 @@
       font-size: 1.2vw;
       overflow: hidden;
     }
+    .saving{
+      font-size: 2vw;
+    }
+    @keyframes blink {
+    0% {
+      opacity: .2;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: .2;
+    }
+}
+
+.saving span {
+    animation-name: blink;
+    font-size: 2.6vw;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+.saving span:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.saving span:nth-child(3) {
+    animation-delay: .4s;
+}
 
     body {
       color: white;
@@ -429,7 +460,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <!-- Loading animation inside the modal -->
-         <div style="margin-top: 35vh;">
+          <div style="margin-top: 35vh;">
             <div class="loader-container">
               <div class="rocket-container">
                 <div class="structure">
@@ -470,17 +501,17 @@
                   </svg>
                 </div>
                 <div class="text-container">
-                  <h2>Loading</h2>
+                  <p class="saving">Starting Journey<span>.</span><span>.</span><span>.</span></p>
                 </div>
                 <div class="smoke">
                   <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                 </div>
               </div>
-              <div class="meteors-container" style="margin-top: -50vh; margin-left: 0vw;">
+              <div class="meteors-container" style="margin-top: -50vh; margin-left: -1vw;">
                 <span></span><span></span><span></span><span></span><span></span><span></span>
               </div>
             </div>
-         </div>
+          </div>
         </div>
       </div>
     </div>
