@@ -482,7 +482,7 @@
       width: 75vw;
       height: 80vh;
       text-align: center;
-      box-shadow: 0 0 1em 0.2em #63105c;
+      box-shadow: 0 0 1.4em 0.7em #63105c;
       background-image: url("ModalBg2.jpg");
       background-size: cover;
     }
@@ -510,7 +510,7 @@
 
     .glassText {
       z-index: 1;
-      height: 33.2vh;
+      height: 33vh;
       border-radius: 1vw;
       padding: 1vh;
       margin-top: 4vh;
@@ -521,6 +521,7 @@
       justify-content: center;
       width: 30vw;
       margin-left: 3vw;
+      margin-bottom: 1vw ;
     }
 
     .glassText:hover {
@@ -530,16 +531,20 @@
     }
 
     .wVid {
-      width: 30vw;
       margin-top: 4vh;
-      height: fit-content;
-      border-radius: 1vw;
-      transition: 0.2s ease-in;
       
     }
 
     .wVid video {
       border-radius: 1vw;
+      transition: 0.2s ease-in;
+      height: 33.2vh;
+
+      
+    }
+
+    .wVid video:hover {
+      box-shadow: 0 0 1em 0.2em white;
       
     }
 
@@ -674,12 +679,12 @@
                       <div class="container">
                         <div class="row align-items-center" style="flex-direction: row">
                           <div class="card-with-icon__content col-12 col-md-6 position-static glassText">
-                            <h1 class="display-6 mb-2"><strong>Throught the journey..</strong></h1>
+                            <h1 class="mb-3" style="font-size: 2vw;"><strong>Throught the journey..</strong></h1>
                             <p class="lead">Get ready to experience the whole process of sending a spacecraft...</p>
                           </div>
                           <div class="card-with-icon__media col-12 col-md-6 text-center">
                             <div class="wVid">
-                              <video style="width: 100%;" autoplay muted loop>
+                              <video autoplay muted loop>
                                 <source src="rocket1.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                               </video>
@@ -700,7 +705,7 @@
                           </div>
                           <div class="card-with-icon__media col-12 col-md-6 text-center">
                             <div class="wVid">
-                              <video style="width: 30vw;" autoplay muted loop>
+                              <video  autoplay muted loop>
                                 <source src="earth.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                               </video>
@@ -721,7 +726,7 @@
                           </div>
                           <div class="card-with-icon__media col-12 col-md-6 text-center">
                             <div class="wVid">
-                              <video style="width: 30vw;" autoplay muted loop>
+                              <video  autoplay muted loop>
                                 <source src="mars.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                               </video>
@@ -747,7 +752,7 @@
                           </div>
                           <div class="card-with-icon__media col-12 col-md-6 text-center">
                             <div class="wVid">
-                              <video style="width: 30vw;" autoplay muted loop>
+                              <video  autoplay muted loop>
                                 <source src="LaunchWindow.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                               </video>
