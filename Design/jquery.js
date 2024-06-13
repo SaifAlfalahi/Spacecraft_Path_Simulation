@@ -12391,7 +12391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		stagePadding: 0,
 
 		merge: false,
-		mergeFit: true,
+		mergeFit: false,
 		autoWidth: false,
 
 		startPosition: 0,
