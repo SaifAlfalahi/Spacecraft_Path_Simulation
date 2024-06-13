@@ -33,19 +33,18 @@
     }
 
     :root {
-      --glow-color: hsl(0, 0%, 100%);
+      --glow-color:#44d3ff;
     }
 
     .glowing-btn {
       position: relative;
-      color: var(--glow-color);
+      color: #fee;
       cursor: pointer;
 
       border: 0.3vw solid var(--glow-color);
       border-radius: 1vw;
       background: none;
       perspective: 2em;
-      font-family: "Raleway", sans-serif;
       font-size: 2vw;
       display: flex;
       text-align: center;
@@ -70,7 +69,7 @@
         0 0 0.45em var(--glow-color);
       -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
         0 0 0.45em var(--glow-color);
-      text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+        text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #4466ff, 0 0 0.5em #00addd, 0 0 0.1em #6802bb, 0 8px 3px #000;
       animation: text-flicker 3s linear infinite;
     }
 
@@ -118,6 +117,8 @@
 
     .glowing-btn:hover .glowing-txt {
       animation: none;
+      text-shadow: none;
+
     }
 
     .glowing-btn:hover .faulty-letter {
@@ -389,7 +390,7 @@
       z-index: 1;
       position: fixed;
       border-radius: 1vw;
-      top: 10vh;
+      top: 20vh;
       left: 4vw;
       backdrop-filter: blur(0.3vw);
       padding: 2vw;
@@ -399,12 +400,12 @@
 
     .glassContainer2 {
       width: 20vw;
-      height: 70vh;
+      height: 45vh;
       border: 0.2px solid #ddd !important;
       z-index: 1;
       position: fixed;
       border-radius: 1vw;
-      top: 10vh;
+      top: 50vh;
       right: 4vw;
       backdrop-filter: blur(0.3vw);
       padding: 2vw;
@@ -537,6 +538,7 @@
 
     .wVid video {
       border-radius: 1vw;
+
       transition: 0.2s ease-in;
       height: 33.2vh;
 
@@ -559,6 +561,12 @@
       color: #fee;
       font-size: 3vw;
       text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff44f6, 0 0 0.5em #8500dd, 0 0 0.1em #6802bb, 0 8px 3px #000;
+    }
+
+    .logo2 b {
+      color: #fee;
+      font-size: 1.5vw;
+      text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #4466ff, 0 0 0.5em #00addd, 0 0 0.1em #6802bb, 0 8px 3px #000;
     }
 
     .logo b span {
@@ -654,6 +662,21 @@
 
     .close-btn:hover:before {
       left: 100%;
+    }
+
+    .SAASSTlogo {
+      height: 20vh;
+      width: 14vw;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url(SAASST_upscaled.png);
+      margin-top: -7vh;
+      z-index: 88;
+    }
+
+    #dateTime {
+      font-size: 1vw;
+
     }
   </style>
 </head>
@@ -773,25 +796,24 @@
       </div>
     </div>
 
-    <div class="d-flex gap-2 glassContainer gc flex-column justify-content-between">
 
-      <div>
-        <p class="titleFont">Welcome (Probably)</p>
+    <div class="gc glassContainer2 d-flex justify-content-between flex-column  ">
+
+      <div class="SAASSTlogo">
       </div>
+
+      <div id="dateTime" style="margin-bottom: -5vh; text-align: center;">
+      </div>
+
       <div class="d-grid gap-2 w-100">
 
         <button id="ClickedButton" class='glowing-btn'><span class='glowing-txt'>S<span
               class='faulty-letter'>t</span>a</span><span class='faulty-letter'>r</span><span
-            class="glowing-txt">t</span></button>
+            class="glowing-txt">t</span>
+        </button>
       </div>
     </div>
-    <div class="d-flex gap-2 gc glassContainer2 flex-column justify-content-between">
 
-      <div>
-        <p class="titleFont">Something cool</p>
-      </div>
-
-    </div>
 
 
     <video id="homepagevid" style="width: 100vw;" autoplay muted loop>
@@ -1099,6 +1121,26 @@
     window.ontouchmove = e => handleOnMove(e.touches[0]);
 
     document.body.onmouseleave = () => updateLastMousePosition(originPosition);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      function updateDateTime() {
+        const dateTimeElement = document.getElementById('dateTime');
+        const now = new Date();
+        dateTimeElement.innerHTML = now.toLocaleString('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+        }) + "<br> <p class='logo2' style='font-size: 1vw !important; '> <b>" + now.toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        }) + "</b> </p>";
+
+      }
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+    });
 
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
