@@ -1,46 +1,161 @@
-// Constants
-const G = 6.67430e-11; // Gravitational constant (m^3/kg/s^2)
+const resultDiv = document.getElementById('result');
 
-// Function to calculate distance between two planets
-function hohmannTransferDistance(planet1, planet2) {
-    // Here you can calculate the distance dynamically
-    // between the two planets based on their positions.
-    // For the sake of example, let's assume a simple calculation.
-    const r1 = Math.random() * 1e8; // Random value for demonstration
-    const r2 = Math.random() * 1e8; // Random value for demonstration
-    const distance = Math.PI * (r1 + r2) * Math.sqrt((2 * r2) / (r1 + r2));
-    return distance;
+function showDistance(planetName, distanceInAU) {
+    resultDiv.innerHTML = `${planetName} = ${distanceInAU} AU from Sun`;
 }
 
-// Function to calculate delta-v for Hohmann transfer
-function hohmannTransferDeltaV(r1, r2) {
-    const v1 = Math.sqrt(G / r1); // Velocity in initial orbit
-    const v2 = Math.sqrt(G / r2); // Velocity in final orbit
-    const deltaV1 = Math.abs(v2 - v1); // Delta-v for first burn
-    const deltaV2 = Math.abs(Math.sqrt((2 * G * r1) / (r1 + r2)) - v2); // Delta-v for second burn
-    return deltaV1 + deltaV2; // Total delta-v
+const planetButtons = document.querySelectorAll('.planet-buttons button');
+planetButtons.forEach(button => {
+    button.addEventListener('mouseover', () => {
+        const planetName = button.textContent;
+        let distanceInAU;
+        switch (planetName) {
+            case 'Mercury':
+                distanceInAU = 0.39;
+                break;
+            case 'Venus':
+                distanceInAU = 0.72;
+                break;
+            case 'Earth':
+                distanceInAU = 1;
+                break;
+            case 'Mars':
+                distanceInAU = 1.5;
+                break;
+            case 'Jupiter':
+                distanceInAU = 5.2;
+                break;
+            case 'Saturn':
+                distanceInAU = 9.538;
+                break;
+            case 'Uranus':
+                distanceInAU = 19;
+                break;
+            case 'Neptune':
+                distanceInAU = 30;
+                break;
+        }
+        showDistance(planetName, distanceInAU);
+    });
+});
+
+let planetDistances = {
+    mercury: 0.39,
+    venus: 0.72,
+    earth: 1,
+    mars: 1.5,
+    jupiter: 5.2,
+    saturn: 9.538,
+    uranus: 19,
+    neptune: 30
+};
+
+function selectPlanet(planet) {
+    let distance = planetDistances[planet];
+    document.getElementById('result').innerText = `Selected Planet: ${planet.charAt(0).toUpperCase() + planet.slice(1)}, Distance from Sun: ${distance} AU`;
 }
 
-// Function to simulate Hohmann transfer
-function simulateHohmannTransfer(planet1, planet2) {
-    const r1 = hohmannTransferDistance("sun", planet1);
-    const r2 = hohmannTransferDistance("sun", planet2);
+function convertValues() {
+    let planetB = document.getElementById('b').value;
+    let planetA = planetDistances['earth']; // Earth is the reference point
 
-    const deltaV = hohmannTransferDeltaV(r1, r2);
-    console.log("Delta-v required for Hohmann transfer:", deltaV.toFixed(2), "m/s");
+    // Convert the values to a1 and b1
+    let a1 = planetA * 149600000;
+    let b1 = planetB * 149600000;
 
-    // Other parts of simulation...
+    //find hohman transfer orbit in km and Au - semi major axis
+    let h_km = (a1 + b1)/2.0;
+    let h_au = h_km/a1;
+
+    //To find mechanical energy of space craft in earth's parking orbit 
+    const GM = 1.33e11;
+    let MEnergy_PO = (GM/((-2)*a1));
+
+    //To find velocity in earth's parking orbit
+    let Velocity_PO = (Math.sqrt(((GM/a1) + MEnergy_PO)*2));
+
+    //To find mechanical energy of space craft in hohmann tranfer
+    let MEnergy_HT = (GM/((-2)*h_km));
+
+    //To find velocity in earth's parking orbit
+    let Velocity_HT = (Math.sqrt(((GM/a1) + (MEnergy_HT))*2));
+
+    //To find delta velocity to go from orbit 1 to transfer orbit
+    let delta_vel = Math.abs(Velocity_PO-Velocity_HT);
+
+    //To find mechanical energy of orbit 2
+    let MEnergy_O2 = (GM/((-2)*h_km));
+
+    //To find velocity in orbit 2
+    let Velocity_O2 = (Math.sqrt(((GM/h_km) + MEnergy_O2)*2));
+
+    //To find mechanical energy of orbit 2 to hohman
+    let MEnergy_O2H = (GM/((-2)*b1));
+
+    //To find velocity of orbit 2 to hohman
+    let Velocity_O2H = (Math.sqrt(((GM/b1) + (MEnergy_O2H))*2));
+
+    //To find delta velocity to go from orbit 1 to transfer orbit
+    let delta_vel2 = Math.abs(Velocity_O2-Velocity_O2H);
+
+    //Calculate the total ∆V needed for the trip from orbit 1 to orbit 2
+    let delta_total = delta_vel+delta_vel2;
+
+    document.getElementById('result1').innerText = `Planet A Distance: ${planetA} AU`;
+    document.getElementById('result2').innerText = `Planet B Distance: ${planetB} AU`;
+
+    document.getElementById('result3').innerText = `Hohmann Transfer Orbit: ${h_au} AU`;
+
+    document.getElementById('result4').innerText = `∆V1: ${delta_vel} AU`;
+    document.getElementById('result5').innerText = `∆V2: ${delta_vel2} AU`;
+    document.getElementById('result6').innerText = `Total ∆V: ${delta_total} AU`;
+
 }
 
-// Function to calculate distance and display result
-function calculateDistance() {
-    const planet1 = document.getElementById('planet1').value;
-    const planet2 = document.getElementById('planet2').value;
-    const distance = hohmannTransferDistance(planet1, planet2);
+//launch windown calculator 
+document.addEventListener("DOMContentLoaded", function() {
+    const planets = [
+        { name: "Mars", synodicPeriod: 780, lastLaunch: new Date('2022-09-01') }
+    ];
 
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `Hohmann Transfer Distance from ${planet1} to ${planet2}: ${distance.toLocaleString()} km`;
+    function calculateLaunchWindows() {
+        const startDate = new Date(document.getElementById("start-date").value);
+        if (!startDate) {
+            alert("Please select a start date.");
+            return;
+        }
 
-    // Call simulateHohmannTransfer function
-    simulateHohmannTransfer(planet1, planet2);
-}
+        const tableBody = document.getElementById("launchWindowTable");
+        tableBody.innerHTML = ""; // Clear previous results
+
+        planets.forEach(planet => {
+            const { name, synodicPeriod, lastLaunch } = planet;
+
+            let nextLaunchWindow = new Date(lastLaunch.getTime());
+            while (nextLaunchWindow <= startDate) {
+                nextLaunchWindow = new Date(nextLaunchWindow.getTime() + synodicPeriod * 24 * 60 * 60 * 1000);
+            }
+
+            // Format the date as "Month Year"
+            const options = {year: 'numeric', month: 'short' };
+            const formattedLaunchWindow = nextLaunchWindow.toLocaleDateString(undefined, options);
+
+            const row = document.createElement("tr");
+
+            const nameCell = document.createElement("td");
+            nameCell.textContent = name;
+
+            const launchWindowCell = document.createElement("td");
+            launchWindowCell.textContent = formattedLaunchWindow;
+
+            row.appendChild(nameCell);
+            row.appendChild(launchWindowCell);
+
+            tableBody.appendChild(row);
+        });
+    }
+
+    window.calculateLaunchWindows = calculateLaunchWindows;
+});
+
+
