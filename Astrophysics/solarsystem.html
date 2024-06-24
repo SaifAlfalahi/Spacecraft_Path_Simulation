@@ -19,35 +19,64 @@
         <div class="orbit neptune-orbit"><div class="planet neptune"></div></div>
     </div>
 
-    <div class="transfer-calculation">
-        <h2>Hohmann Transfer Calculation</h2>
-        <label for="planet1">From:</label>
-        <select id="planet1">
-            <option value="mercury">Mercury</option>
-            <option value="venus">Venus</option>
-            <option value="earth" selected>Earth</option>
-            <option value="mars">Mars</option>
-            <option value="jupiter">Jupiter</option>
-            <option value="saturn">Saturn</option>
-            <option value="uranus">Uranus</option>
-            <option value="neptune">Neptune</option>
+    <div class="planet-buttons">
+        <button onclick="selectPlanet('mercury')">Mercury</button>
+        <button onclick="selectPlanet('venus')">Venus</button>
+        <button onclick="selectPlanet('earth')">Earth</button>
+        <button onclick="selectPlanet('mars')">Mars</button>
+        <button onclick="selectPlanet('jupiter')">Jupiter</button>
+        <button onclick="selectPlanet('saturn')">Saturn</button>
+        <button onclick="selectPlanet('uranus')">Uranus</button>
+        <button onclick="selectPlanet('neptune')">Neptune</button>
+    </div>
+
+    <div class="top-right-image">
+        <img src="images/side.png" alt="Top Right Image">
+    </div>
+
+    <div id="result"></div>
+
+    <div class="hohmann-transfer">
+        <h2>Hohmann Transfer Calculator</h2>
+        <label for="b">Select Planet B :</label>
+        <select id="b" name="b">
+            <option value="0.39">Mercury</option>
+            <option value="0.72">Venus</option>
+            <option value="1.5">Mars</option>
+            <option value="5.2">Jupiter</option>
+            <option value="9.538">Saturn</option>
+            <option value="19">Uranus</option>
+            <option value="30">Neptune</option>
         </select>
 
-        <label for="planet2">To:</label>
-        <select id="planet2">
-            <option value="mercury">Mercury</option>
-            <option value="venus">Venus</option>
-            <option value="earth">Earth</option>
-            <option value="mars" selected>Mars</option>
-            <option value="jupiter">Jupiter</option>
-            <option value="saturn">Saturn</option>
-            <option value="uranus">Uranus</option>
-            <option value="neptune">Neptune</option>
-        </select>
+        <button onclick="convertValues()">Calculate</button>
+        <p id="result1"></p>
+        <p id="result2"></p>
+        <p id="result3"></p>
+        <p id="result4"></p>
+        <p id="result5"></p>
+        <p id="result6"></p>
+    </div>
 
-        <button onclick="calculateDistance()">Calculate</button>
-
-        <div id="result"></div>
+    <div class = "LaunchWindow">
+        <h2>Launch Window Simulation</h2>
+    <div class="form-group">
+        <label for="start-date">Select Start Date:</label>
+        <input type="date" id="start-date" />
+    </div>
+    <div><button onclick="calculateLaunchWindows()">Calculate Launch Windows</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Planet</th>
+                <th>Next Optimal Launch Window</th>
+            </tr>
+        </thead>
+        <tbody id="launchWindowTable">
+            <!-- Table data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
     </div>
 
     <script src="script.js"></script>
