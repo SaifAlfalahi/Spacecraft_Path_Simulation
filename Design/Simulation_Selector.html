@@ -7,7 +7,6 @@
     <title>Spacecraft Simulator</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -17,7 +16,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <style>
         @import url("https://fonts.googleapis.com/css?family=Raleway");
-
 
         button {
             position: relative;
@@ -33,7 +31,7 @@
             text-align: center;
             backdrop-filter: blur(100vw);
             box-shadow: 0 0 35px black;
-        }   
+        }
 
         button:hover {
             letter-spacing: 0.2rem;
@@ -46,9 +44,7 @@
             content: "";
             position: absolute;
             inset: 2px;
-
         }
-        
 
         button span {
             position: relative;
@@ -88,7 +84,7 @@
             left: 20%;
             bottom: -2px;
             border: 2px solid var(--clr);
-            background: transparent ;
+            background: transparent;
             transition: 0.2s;
         }
 
@@ -97,7 +93,6 @@
             left: 80%;
             animation: move 3s infinite;
             border: 2px solid var(--clr);
-
         }
 
         @keyframes move {
@@ -212,7 +207,6 @@
             overflow: hidden;
             height: 100vh;
             cursor: url('cursor.png'), auto;
-
         }
 
         .glassContainer {
@@ -224,10 +218,7 @@
             border-radius: 1vw;
             backdrop-filter: blur(0.2vw);
             padding: 2vw;
-
         }
-
-
 
         .containsVid {
             background-image: url('galaxy.png');
@@ -240,7 +231,6 @@
             align-items: center;
             z-index: 0;
             display: flex;
-
         }
 
         .titleFont {
@@ -264,39 +254,49 @@
             height: 80vh !important;
             z-index: 100;
         }
+
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2vw;
+            text-align: center;
+            color: white;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #hoverText {
+            opacity: 1;
+        }
     </style>
 </head>
 
 <body>
     <div class="containsVid">
-
-
         <div class="d-flex gap-2 glassContainer gc flex-column justify-content-between">
-
             <div>
                 <p class="titleFont">Select Simulations</p>
             </div>
+            <div class="center-text" id="hoverText">Hover over a button to see details</div>
+            <div class="center-text" id="hoverText1">Information about simulation 1</div>
+            <div class="center-text" id="hoverText2">Information about simulation 2</div>
+            <div class="center-text" id="hoverText3">Information about simulation 3</div>
+
             <div class="d-flex justify-content-between gap-2 w-100">
-
                 <div class="btn1"><button id="ClickedButton0" style="--clr:#0FF0FC"><span>Simulation
-                            1</span><i></i></button>
-                </div>
-
-                <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Simulation 2</span><i></i></button>
-                </div>
-
-                <div><button id="ClickedButton2" style="--clr:#8A2BE2 "><span>Simulation 3</span><i></i></button>
-                </div>
-
+                            1</span><i></i></button></div>
+                <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Simulation 2</span><i></i></button></div>
+                <div><button id="ClickedButton2" style="--clr:#8A2BE2"><span>Simulation 3</span><i></i></button></div>
             </div>
         </div>
-
-
         <video id="homepagevid" style="width: 100vw;" autoplay muted loop>
             <source src="close earth.mp4" type="video/mp4">
-
             Your browser does not support the video tag.
         </video>
+
     </div>
 
     <!-- Modal HTML -->
@@ -305,7 +305,6 @@
             <div class="modal-content">
                 <div class="modal-body">
                     Your journey will start in <span id="modalTimer">3</span> seconds.
-
                 </div>
             </div>
         </div>
@@ -313,33 +312,54 @@
 
     <script>
         let video = document.getElementById("homepagevid");
-        video.playbackRate = 0.60;  
-
+        video.playbackRate = 0.60;
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const gcElement = document.querySelector(".gc");
+        $(document).ready(function () {
+            const gcElement = $(".gc");
 
             const buttons = [
-                { id: "ClickedButton0", color: "#0FF0FC" },
-                { id: "ClickedButton1", color: "#39FF14" },
-                { id: "ClickedButton2", color: "#8A2BE2" }
+                { id: "#ClickedButton0", color: "#0FF0FC", textId: "#hoverText1" },
+                { id: "#ClickedButton1", color: "#39FF14", textId: "#hoverText2" },
+                { id: "#ClickedButton2", color: "#8A2BE2", textId: "#hoverText3" }
             ];
 
+            const hoverTextElement = $("#hoverText");
+            let timeout;
+
+            // Set the default opacity of hoverText to 1
+            hoverTextElement.css("opacity", 1);
+
             buttons.forEach(button => {
-                const btnElement = document.getElementById(button.id);
+                const btnElement = $(button.id);
+                const textElement = $(button.textId);
 
-                if (btnElement) {
-                    btnElement.addEventListener("mouseover", function () {
-                        gcElement.style.boxShadow = `0 0 1em 0.2em ${button.color}`;
-                    });
-
-                    btnElement.addEventListener("mouseout", function () {
-                        gcElement.style.boxShadow = "0 0 1em 0.2em #000000";
-                    });
+                if (btnElement.length && textElement.length) {
+                    btnElement.hover(
+                        function () {
+                            gcElement.css("box-shadow", `0 0 1em 0.2em ${button.color}`);
+                            hoverTextElement.css("opacity", 0);
+                            clearTimeout(timeout);
+                            timeout = setTimeout(() => {
+                                textElement.css("opacity", 1);
+                            }, 150); // Add a delay of 300ms before showing the new text
+                        },
+                        function () {
+                            gcElement.css("box-shadow", `0 0 1em 0.2em #000000`); // Default shadow
+                            textElement.css("opacity", 0);
+                            clearTimeout(timeout);
+                            timeout = setTimeout(() => {
+                                hoverTextElement.css("opacity", 1);
+                            }, 150); // Add a delay of 300ms before showing the default text
+                        }
+                    );
                 }
             });
         });
+
+
+
+
         document.addEventListener("DOMContentLoaded", function () {
             function checkDeviceWidthAndOrientation() {
                 return window.innerWidth < window.innerHeight;
@@ -367,7 +387,6 @@
                 }
             });
         });
-
 
         let start = new Date().getTime();
 
@@ -484,7 +503,6 @@
         window.ontouchmove = e => handleOnMove(e.touches[0]);
 
         document.body.onmouseleave = () => updateLastMousePosition(originPosition);
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
