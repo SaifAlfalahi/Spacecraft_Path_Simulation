@@ -7,7 +7,7 @@ body {
 
 .solar-system {
     position: relative;
-    width: 100vw;
+    width: 90vw;
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -86,7 +86,7 @@ body {
 
 .planet-buttons {
     position: absolute;
-    bottom: 20px;
+    bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
     background: transparent;
@@ -102,7 +102,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1.3em;
+    font-size: 0.8em;
 }
 
 .planet-buttons button:hover {
@@ -111,7 +111,7 @@ body {
 
 #result {
     margin-top: 10px;
-    font-size: 1.8em;
+    font-size: 1em;
     color: white;
     text-align: center;
 }
@@ -126,12 +126,12 @@ body {
     padding: 20px;
     border-radius: 10px;
     color: white;
-    width: 350px;
+    width: 250px;
     font-size: 1.2em;
 }
 
 .hohmann-transfer h2 {
-    font-size: 1.5em;
+    font-size: 1em;
     margin-bottom: 20px;
 }
 
@@ -139,13 +139,13 @@ body {
 .hohmann-transfer select,
 .hohmann-transfer button {
     display: block;
-    margin: 10px 0;
-    font-size: 1.2em;
+    margin: 5px 0;
+    font-size: 0.8em;
     width: 100%;
 }
 
 .hohmann-transfer button {
-    padding: 10px;
+    padding: 5px;
     background: #333;
     color: white;
     border: none;
@@ -159,7 +159,7 @@ body {
 
 .hohmann-transfer p {
     margin: 10px 0;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .top-right-image {
@@ -169,7 +169,7 @@ body {
 }
 
 .top-right-image img {
-    width: 500px; /* Adjust the width as needed */
+    width: 300px; /* Adjust the width as needed */
     height: auto;
     border-radius: 10%; /* Optional: Adds rounded corners to the image */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
@@ -177,28 +177,28 @@ body {
 
 .LaunchWindow {
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: 60%;
     transform: translateY(-50%);
     background: transparent;
     padding: 20px;
     border-radius: 10px;
     color: white;
-    width: 450px;
-    font-size: 1.2em;
+    width: 300px;
+    font-size: 1em;
 
 }
 
 .LaunchWindow h2 {
-    font-size: 1.5em;
+    font-size: 1em;
     margin-bottom: 20px;
 }
 
 .LaunchWindow button {
     display: block;
     margin: 10px 0;
-    font-size: 1.2em;
-    width: 100%;
+    font-size: 1em;
+    width: 80%;
 }
 
 /*.LaunchWindow input {
@@ -230,19 +230,18 @@ body {
 label {
     margin-right: 50px;
     display: block;
-    font-size: 1.2em;
+    font-size: 1em;
     width: 60%
 }
 
 input {
-    margin-left: 20px;
+    margin-right: 80px;
     padding: 3px;
     display: block;
-    font-size: 1.2em;
-    width: 70%;
+    font-size: 1em;
+    width: 130px;
 }
 
 .table {
-    font-size: 1.2em;
+    font-size: 1em;
 }
-
