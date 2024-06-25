@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System with Hohmann Transfer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="solar-system">
+        <div class="sun"></div>
+        <div class="orbit mercury-orbit"><div class="planet mercury"></div></div>
+        <div class="orbit venus-orbit"><div class="planet venus"></div></div>
+        <div class="orbit earth-orbit"><div class="planet earth"></div></div>
+        <div class="orbit mars-orbit"><div class="planet mars"></div></div>
+        <div class="orbit jupiter-orbit"><div class="planet jupiter"></div></div>
+        <div class="orbit saturn-orbit"><div class="planet saturn"></div></div>
+        <div class="orbit uranus-orbit"><div class="planet uranus"></div></div>
+        <div class="orbit neptune-orbit"><div class="planet neptune"></div></div>
+    </div>
+
+    <div class="planet-buttons">
+        <button onclick="selectPlanet('mercury')">Mercury</button>
+        <button onclick="selectPlanet('venus')">Venus</button>
+        <button onclick="selectPlanet('earth')">Earth</button>
+        <button onclick="selectPlanet('mars')">Mars</button>
+        <button onclick="selectPlanet('jupiter')">Jupiter</button>
+        <button onclick="selectPlanet('saturn')">Saturn</button>
+        <button onclick="selectPlanet('uranus')">Uranus</button>
+        <button onclick="selectPlanet('neptune')">Neptune</button>
+    </div>
+
+    <div class="top-right-image">
+        <img src="images/side.png" alt="Top Right Image">
+    </div>
+
+    <div id="result"></div>
+
+    <div class="hohmann-transfer">
+        <h2>Hohmann Transfer Calculator</h2>
+        <label for="b">Select Planet B :</label>
+        <select id="b" name="b">
+            <option value="0.39">Mercury</option>
+            <option value="0.72">Venus</option>
+            <option value="1.5">Mars</option>
+            <option value="5.2">Jupiter</option>
+            <option value="9.538">Saturn</option>
+            <option value="19">Uranus</option>
+            <option value="30">Neptune</option>
+        </select>
+
+        <button onclick="convertValues()">Calculate</button>
+        <p id="result1"></p>
+        <p id="result2"></p>
+        <p id="result3"></p>
+        <p id="result4"></p>
+        <p id="result5"></p>
+        <p id="result6"></p>
+    </div>
+
+    <div class = "LaunchWindow">
+        <h2>Launch Window Simulation</h2>
+    <div class="form-group">
+        <label for="start-date">Select Start Date:</label>
+        <input type="date" id="start-date" />
+    </div>
+    <div><button onclick="calculateLaunchWindows()">Calculate Launch Windows</button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Planet</th>
+                <th>Next Optimal Launch Window</th>
+            </tr>
+        </thead>
+        <tbody id="launchWindowTable">
+            <!-- Table data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

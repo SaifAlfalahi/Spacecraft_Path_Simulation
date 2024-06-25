@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spacecraft Simulator</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="styles.css">
+  <script src="jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="custom.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
+  <style>
+    .zen-dots-regular {
+      font-family: "Zen Dots", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @import url("https://fonts.googleapis.com/css?family=Raleway");
+
+    .owl-carousel .owl-stage {
+      transition: none;
+      /* Adjust transition duration */
+    }
+
+    :root {
+      --glow-color:#44d3ff;
+    }
+
+    .glowing-btn {
+      position: relative;
+      color: #fee;
+      cursor: pointer;
+
+      border: 0.3vw solid var(--glow-color);
+      border-radius: 1vw;
+      background: none;
+      perspective: 2em;
+      font-size: 2vw;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      font-weight: 750;
+      letter-spacing: 0.3vw;
+      margin-bottom: 2vh;
+
+      -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+      -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+      box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+      animation: border-flicker 2s linear infinite;
+    }
+
+    .glowing-txt {
+      float: left;
+      margin-right: 0;
+      -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+      -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+        text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #4466ff, 0 0 0.5em #00addd, 0 0 0.1em #6802bb, 0 8px 3px #000;
+      animation: text-flicker 3s linear infinite;
+    }
+
+    .faulty-letter {
+      opacity: 0.5;
+      animation: faulty-flicker 2s linear infinite;
+    }
+
+    .glowing-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.7;
+      filter: blur(1em);
+      transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+      background: var(--glow-color);
+      pointer-events: none;
+    }
+
+    .glowing-btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      z-index: -1;
+      background-color: var(--glow-color);
+      box-shadow: 0 0 1em 0.2em var(--glow-color);
+      transition: opacity 100ms linear;
+      border-radius: 0.2vw;
+    }
+
+    .glowing-btn:hover {
+      color: rgba(0, 0, 0, 0.8);
+      text-shadow: none;
+      animation: none;
+      border-radius: 0.5em;
+      cursor: url("cursor2.png"), auto;
+    }
+
+    .glowing-btn:hover .glowing-txt {
+      animation: none;
+      text-shadow: none;
+
+    }
+
+    .glowing-btn:hover .faulty-letter {
+      animation: none;
+      text-shadow: none;
+      opacity: 1;
+    }
+
+    .glowing-btn:hover:before {
+      filter: blur(1.5em);
+      opacity: 1;
+    }
+
+    .glowing-btn:hover:after {
+      opacity: 1;
+    }
+
+    @keyframes faulty-flicker {
+      0% {
+        opacity: 0.1;
+      }
+
+      2% {
+        opacity: 0.1;
+      }
+
+      4% {
+        opacity: 0.5;
+      }
+
+      19% {
+        opacity: 0.5;
+      }
+
+      21% {
+        opacity: 0.1;
+      }
+
+      23% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 0.5;
+      }
+
+      83% {
+        opacity: 0.4;
+      }
+
+      87% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes text-flicker {
+      0% {
+        opacity: 0.1;
+      }
+
+      2% {
+        opacity: 1;
+      }
+
+      8% {
+        opacity: 0.1;
+      }
+
+      9% {
+        opacity: 1;
+      }
+
+      12% {
+        opacity: 0.1;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      25% {
+        opacity: 0.3;
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      70% {
+        opacity: 0.7;
+      }
+
+      72% {
+        opacity: 0.2;
+      }
+
+      77% {
+        opacity: 0.9;
+      }
+
+      100% {
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes border-flicker {
+      0% {
+        opacity: 0.1;
+      }
+
+      2% {
+        opacity: 1;
+      }
+
+      4% {
+        opacity: 0.1;
+      }
+
+      8% {
+        opacity: 1;
+      }
+
+      70% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .glowing-btn {
+        font-size: 1em;
+      }
+    }
+
+    .glow-point {
+      position: absolute;
+      box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--glow-rgb));
+      pointer-events: none;
+    }
+
+    .star {
+      background-image: url('sparkler.png');
+      background-size: contain;
+      position: absolute;
+      z-index: 420;
+      color: white;
+      width: 1.2rem;
+      height: 1.2rem;
+      animation-duration: 1500ms;
+      animation-fill-mode: forwards;
+      pointer-events: none;
+    }
+
+    @keyframes fall-1 {
+      0% {
+        transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
+        opacity: 0;
+      }
+
+      5% {
+        transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall-2 {
+      0% {
+        transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+        opacity: 0;
+      }
+
+      10% {
+        transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fall-3 {
+      0% {
+        transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+        opacity: 0;
+      }
+
+      15% {
+        transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .btn-outline-light {
+      width: 16vw;
+      height: 6vh;
+      font-size: 1.2vw;
+      overflow: hidden;
+    }
+
+    .saving {
+      font-size: 1.4vw;
+      width: 100%;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: .2;
+      }
+
+      20% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: .2;
+      }
+    }
+
+    .saving {
+      width: 19vw;
+    }
+
+    .saving span {
+      animation-name: blink;
+      font-size: 2.1vw;
+      animation-duration: 1.4s;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+    }
+
+    .saving span:nth-child(2) {
+      animation-delay: .2s;
+    }
+
+    .saving span:nth-child(3) {
+      animation-delay: .4s;
+    }
+
+    body {
+      color: white;
+      padding: 0px;
+      margin: 0px;
+      overflow: hidden;
+      height: 100vh;
+      cursor: url('cursor.png'), auto;
+      font-family: "Zen Dots", sans-serif;
+
+    }
+
+    .glassContainer {
+      width: 20vw;
+      height: 70vh;
+      border: 1px solid #ddd !important;
+      z-index: 1;
+      position: fixed;
+      border-radius: 1vw;
+      top: 20vh;
+      left: 4vw;
+      backdrop-filter: blur(0.3vw);
+      padding: 2vw;
+      transition: 0.3s ease;
+
+    }
+
+    .glassContainer2 {
+      width: 20vw;
+      height: 45vh;
+      border: 0.2px solid #ddd !important;
+      z-index: 1;
+      position: fixed;
+      border-radius: 1vw;
+      top: 50vh;
+      right: 4vw;
+      backdrop-filter: blur(0.3vw);
+      padding: 2vw;
+      cursor: url('cursor.png'), auto;
+      transition: 0.3s ease;
+
+    }
+
+    .containsVid {
+      background-image: url('background.mp4');
+      background-size: cover;
+      background-repeat: repeat;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      margin-top: 0vh;
+      align-items: center;
+      z-index: 0;
+
+    }
+
+    .titleFont {
+      font-size: 1.5vw;
+    }
+
+    .gc {
+      transition: opacity 0.2s ease-in;
+      opacity: 1;
+      overflow: hidden;
+      box-shadow: 0 0 1em 0.2em var(--glow-color);
+
+    }
+
+    .modal-content {
+      color: white;
+      box-shadow: 0 0 1em 0.2em #6802bb;
+      background-image: url("ModalBG3.jpg");
+      background-color: #6802bb;
+      margin-left: -22.5vw;
+      margin-top: 10vh;
+      width: 75vw !important;
+      height: 80vh !important;
+      z-index: 100;
+    }
+
+    .modal1 {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 300;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+      justify-content: center;
+      transition: 0.3s ease-out;
+
+      align-items: center;
+    }
+
+    .modalContent {
+      margin: auto;
+      padding: 20px;
+      border-radius: 1vw;
+      width: 75vw;
+      height: 80vh;
+      text-align: center;
+      box-shadow: 0 0 1.4em 0.7em #63105c;
+      background-image: url("ModalBg2.jpg");
+      background-size: cover;
+    }
+
+    #showModalButton {
+      position: fixed;
+      transition: 0.3s ease-out;
+
+      top: 1vh;
+      left: 96vw;
+      z-index: 100;
+
+    }
+
+    #showModalButton img {
+      width: 2vw;
+
+    }
+
+    button:hover {
+      cursor: url("cursor2.png"), auto;
+
+    }
+
+
+    .glassText {
+      z-index: 1;
+      height: 33vh;
+      border-radius: 1vw;
+      padding: 1vh;
+      margin-top: 4vh;
+      backdrop-filter: blur(1vw);
+      transition: 0.2s ease-in;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 30vw;
+      margin-left: 3vw;
+      margin-bottom: 1vw ;
+    }
+
+    .glassText:hover {
+      box-shadow: 0 0 1em 0.2em white;
+
+
+    }
+
+    .wVid {
+      margin-top: 4vh;
+      
+    }
+
+    .wVid video {
+      border-radius: 1vw;
+
+      transition: 0.2s ease-in;
+      height: 33.2vh;
+
+      
+    }
+
+    .wVid video:hover {
+      box-shadow: 0 0 1em 0.2em white;
+      
+    }
+
+
+
+    .titleInModal {
+      text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 5px 1px #000;
+      font-size: 1vw;
+    }
+
+    .logo b {
+      color: #fee;
+      font-size: 3vw;
+      text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff44f6, 0 0 0.5em #8500dd, 0 0 0.1em #6802bb, 0 8px 3px #000;
+    }
+
+    .logo2 b {
+      color: #fee;
+      font-size: 1.5vw;
+      text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #4466ff, 0 0 0.5em #00addd, 0 0 0.1em #6802bb, 0 8px 3px #000;
+    }
+
+    .logo b span {
+      animation: blink linear infinite 5s;
+    }
+
+    .logo b span:nth-of-type(2) {
+      animation: blink linear infinite 7s;
+    }
+
+    .logo b span:nth-of-type(1) {
+      animation: blink linear infinite 6s;
+    }
+
+    .logo b span:nth-of-type(3) {
+      animation: blink linear infinite 3s;
+    }
+
+    @keyframes blink {
+      78% {
+        color: inherit;
+        text-shadow: inherit;
+      }
+
+      79% {
+        color: #333;
+      }
+
+      80% {
+
+        text-shadow: none;
+      }
+
+      81% {
+        color: inherit;
+        text-shadow: inherit;
+      }
+
+      82% {
+        color: #333;
+        text-shadow: none;
+      }
+
+      83% {
+        color: inherit;
+        text-shadow: inherit;
+      }
+
+      92% {
+        color: #333;
+        text-shadow: none;
+      }
+
+      92.5% {
+        color: inherit;
+        text-shadow: inherit;
+      }
+    }
+
+
+    .close-btn {
+      text-decoration: none;
+      height: 5vh;
+      transition: 0.3s ease-in;
+      width: 7vw;
+      background: transparent;
+      color: white;
+      font-size: 1vw;
+      text-transform: uppercase;
+      border: 1px solid rgb(146, 148, 248);
+      position: relative;
+      overflow: hidden;
+      margin-right: 4vw;
+    }
+
+    .close-btn:hover {
+      box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+    }
+
+    .close-btn:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg,
+          transparent,
+          rgba(146, 148, 248, 0.4),
+          transparent);
+      transition: all 650ms;
+    }
+
+    .close-btn:hover:before {
+      left: 100%;
+    }
+
+    .SAASSTlogo {
+      height: 20vh;
+      width: 14vw;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url(SAASST_upscaled.png);
+      margin-top: -7vh;
+      z-index: 88;
+    }
+
+    #dateTime {
+      font-size: 1vw;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="containsVid">
+    <button id="showModalButton" class="btn">
+      <img src="information.png" alt="Info">
+    </button>
+
+    <div id="welcomeModal" class="modal1">
+      <div class="modalContent">
+        <div class="logo"><b>W<span>E</span>LC<span>O</span>M<span>E</span></b></div>
+        <p class="titleInModal">SPACECRAFT PATH SIMULATOR</p>
+        <section class="section theme-white card-with-icon py-0 card-with-slider">
+          <div>
+            <div class="owl-carousel owl-loaded" data-items="4" data-loop="true" data-nav="true" data-dots="true">
+              <div class="owl-stage-outer" style="padding-left: 2vw;">
+                <div class="owl-stage">
+                  <!-- Slide 1 -->
+                  <div class="owl-item">
+                    <div class="card-with-slider--slide">
+                      <div class="container">
+                        <div class="row align-items-center" style="flex-direction: row">
+                          <div class="card-with-icon__content col-12 col-md-6 position-static glassText">
+                            <h1 class="mb-3" style="font-size: 2vw;"><strong>Throught the journey..</strong></h1>
+                            <p class="lead">Get ready to experience the whole process of sending a spacecraft...</p>
+                          </div>
+                          <div class="card-with-icon__media col-12 col-md-6 text-center">
+                            <div class="wVid">
+                              <video autoplay muted loop>
+                                <source src="rocket1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Slide 2 -->
+                  <div class="owl-item">
+                    <div class="card-with-slider--slide">
+                      <div class="container">
+                        <div class="row align-items-center" style="flex-direction: row">
+                          <div class="card-with-icon__content col-12 col-md-6 position-static glassText">
+                            <h1 class="display-3 mb-1"><strong>Earth</strong></h1>
+                            <p class="lead">Starting from the parking orbit of the Earth...</p>
+                          </div>
+                          <div class="card-with-icon__media col-12 col-md-6 text-center">
+                            <div class="wVid">
+                              <video  autoplay muted loop>
+                                <source src="earth.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Slide 3 -->
+                  <div class="owl-item">
+                    <div class="card-with-slider--slide">
+                      <div class="container">
+                        <div class="row align-items-center" style="flex-direction: row">
+                          <div class="card-with-icon__content col-12 col-md-6 position-static glassText">
+                            <h1 class="display-3 mb-1"><strong>Mars</strong></h1>
+                            <p class="lead">Until you reach the parking orbit of Mars...</p>
+                          </div>
+                          <div class="card-with-icon__media col-12 col-md-6 text-center">
+                            <div class="wVid">
+                              <video  autoplay muted loop>
+                                <source src="mars.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Slide 4 -->
+                  <div class="owl-item">
+                    <div class="card-with-slider--slide">
+                      <div class="container">
+                        <div class="row align-items-center" style="flex-direction: row">
+                          <div class="card-with-icon__content col-12 col-md-6 position-static glassText">
+                            <h1 class="display-3 mb-1"><strong>Calculations</strong></h1>
+                            <p class="lead">Learn how to find:
+                            <ul>
+                              <li>Launch window</li>
+                              <li>Hohman transfer orbit</li>
+                            </ul>
+                            </p>
+                          </div>
+                          <div class="card-with-icon__media col-12 col-md-6 text-center">
+                            <div class="wVid">
+                              <video  autoplay muted loop>
+                                <source src="LaunchWindow.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                              </video>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="d-flex justify-content-end align-items-end" style="height: 9vh;">
+          <button class="close-btn" id="skipButton">Skip</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="gc glassContainer2 d-flex justify-content-between flex-column  ">
+
+      <div class="SAASSTlogo">
+      </div>
+
+      <div id="dateTime" style="margin-bottom: -5vh; text-align: center;">
+      </div>
+
+      <div class="d-grid gap-2 w-100">
+
+        <button id="ClickedButton" class='glowing-btn'><span class='glowing-txt'>S<span
+              class='faulty-letter'>t</span>a</span><span class='faulty-letter'>r</span><span
+            class="glowing-txt">t</span>
+        </button>
+      </div>
+    </div>
+
+
+
+    <video id="homepagevid" style="width: 100vw;" autoplay muted loop>
+      <source src="background.mp4" type="video/mp4">
+
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+
+
+
+  <!-- Modal HTML -->
+  <div class="modal fade" id="timerModal" tabindex="-1" aria-labelledby="timerModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <!-- Loading animation inside the modal -->
+          <div style="margin-top: 35vh;">
+            <div class="loader-container">
+              <div class="rocket-container">
+                <div class="structure">
+                  <svg id="rocket-svg" height="352" version="1.1" viewBox="0 0 59.266662 93.133333" width="224"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g id="layer2" transform="translate(-33.866666,-33.866666)">
+                      <path id="right-wing"
+                        d="m 296,336 a 8.0000078,8.0000078 0 0 0 -8,8 v 80 a 8.0000078,7.9999501 0 0 0 1.16406,4.14062 l -0.22461,0.11329 49.32227,49.32031 0.0781,0.0801 0.004,-0.004 A 7.9999934,8.0000655 0 0 0 344,480 a 7.9999934,8.0000655 0 0 0 8,-8 v -80 a 7.9999934,7.9998924 0 0 0 -2.34961,-5.65625 l 0.004,-0.004 -48.00391,-48.00195 -0.004,0.002 A 8.0000078,8.0000078 0 0 0 296,336 Z"
+                        style="opacity:1;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+                        transform="scale(0.26458333)"></path>
+                      <path id="left-wing"
+                        d="m 184,336 a 8.0000006,8.0000078 0 0 0 -5.65234,2.3457 l -0.004,-0.002 -47.91797,47.91797 -0.082,0.082 0.004,0.002 A 8.0000078,7.9998924 0 0 0 128,392 v 80 a 8.0000078,8.0000655 0 0 0 8,8 8.0000078,8.0000655 0 0 0 5.65625,-2.34961 l 0.004,0.004 49.40039,-49.40039 -0.22657,-0.11329 A 8.0000006,7.9999501 0 0 0 192,424 v -80 a 8.0000006,8.0000078 0 0 0 -8,-8 z"
+                        style="opacity:1;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+                        transform="scale(0.26458333)"></path>
+                      <path id="rocket-main-part"
+                        d="M 239.96875,128 A 111.99996,124.13082 0 0 0 176,240 l 16,200 a 8.0000006,8.0000655 0 0 0 8,8 h 80 a 8.0000078,8.0000655 0 0 0 8,-8 L 304,240 A 111.99996,124.13082 0 0 0 239.96875,128 Z"
+                        style="opacity:1;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+                        transform="scale(0.26458333)"></path>
+                      <path id="nose"
+                        d="m 239.96875,128 a 111.99996,124.13082 0 0 0 -47.77344,48 h 95.51953 a 111.99996,124.13082 0 0 0 -47.74609,-48 z"
+                        style="opacity:1;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+                        transform="scale(0.26458333)"></path>
+                      <ellipse id="window-stroke" cx="63.5" cy="59.266663" rx="7.4083333" ry="7.4083328"
+                        style="opacity:1;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1">
+                      </ellipse>
+                      <ellipse id="window-inner" cx="63.499996" cy="59.266666" rx="6.3499975" ry="6.3500061"
+                        style="opacity:1;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1">
+                      </ellipse>
+                      <path id="middle-wing"
+                        d="m 240,336 a 7.9999898,8.0000078 0 0 0 -8,8 v 128 a 7.9999898,8.0000078 0 0 0 8,8 7.9999898,8.0000078 0 0 0 8,-8 V 344 a 7.9999898,8.0000078 0 0 0 -8,-8 z"
+                        style="opacity:1;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+                        transform="scale(0.26458333)"></path>
+                      <path id="shadow-layer"
+                        d="M 239.96875,128 A 111.99996,124.13082 0 0 0 176,240 l 7.68164,96.01562 a 8.0000006,8.0000078 0 0 0 -5.33398,2.33008 l -0.004,-0.002 -47.91797,47.91797 -0.082,0.082 0.004,0.002 A 8.0000078,7.9998924 0 0 0 128,392 v 80 a 8.0000078,8.0000655 0 0 0 8,8 8.0000078,8.0000655 0 0 0 5.65625,-2.34961 l 0.004,0.004 49.40039,-49.40039 -0.22657,-0.11329 a 8.0000006,7.9999501 0 0 0 0.18946,-0.3496 l 0.0371,0.46289 L 192,440 a 8.0000006,8.0000655 0 0 0 8,8 h 32 v 24 a 7.9999898,8.0000078 0 0 0 8,8 V 336 252 196 128.01758 A 111.99996,124.13082 0 0 0 239.96875,128 Z"
+                        style="opacity:0.2;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+                        transform="scale(0.26458333)"></path>
+                    </g>
+                  </svg>
+                </div>
+                <div class="text-container">
+                  <p class="saving">Starting Journey<span>.</span><span>.</span><span>.</span></p>
+                </div>
+                <div class="smoke">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="meteors-container" style="margin-top: -50vh; margin-left: -1vw;">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let video = document.getElementById("homepagevid");
+    video.playbackRate = 0.30;
+
+  </script>
+  <script>
+
+    $(document).ready(function () {
+      if (!localStorage.getItem('visited')) {
+        $('#welcomeModal').css('opacity', '0');
+        $('#welcomeModal').css('display', 'flex');
+        setTimeout(function () {
+          $('#welcomeModal').css('opacity', '1');
+        }, 1000);
+        $('.gc').css('opacity', '0');
+      } else {
+        $('.gc').css('opacity', '1');
+      }
+
+      $('#skipButton').on('click', function () {
+        $('#welcomeModal').hide();
+        $('.gc').css('opacity', '1');
+        $('#showModalButton').css('opacity', '1');
+        localStorage.setItem('visited', 'true');
+      });
+
+      $('#showModalButton').on('click', function () {
+        $('#welcomeModal').css('opacity', '0');
+        $('#welcomeModal').css('display', 'flex');
+        setTimeout(function () {
+          $('#welcomeModal').css('opacity', '1');
+          $('.owl-carousel').trigger('to.owl.carousel', [0]); // Reset to the first slide
+
+        }, 1000);
+        $('.gc').css('opacity', '0');
+        $('#showModalButton').css('opacity', '0');
+      });
+    });
+
+
+    $(document).ready(function () {
+      $('#ClickedButton').click(function () {
+        $('.gc').css('opacity', '0');
+        $('#showModalButton').css('opacity', '0');
+        setTimeout(function () {
+          $('.gc').css('display', 'none');
+        }, 200); // Timeout matches the duration of the transition
+      });
+    });
+    $(document).ready(function () {
+      $('#timerModal').modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: false
+      });
+
+      $('#ClickedButton').click(function () {
+        setTimeout(function () {
+          $('#homepagevid').attr('loop', false); // Disable loop
+          $('#homepagevid source').attr('src', 'journey.mp4');
+          $('#homepagevid')[0].load();
+          $('#homepagevid')[0].pause();
+        }, 500);
+        -
+
+          $('#timerModal').modal('show');
+        var timer = 3;
+        var interval = setInterval(function () {
+          timer--;
+          $('#modalTimer').text(timer);
+          if (timer <= 0) {
+            clearInterval(interval);
+            $('#timerModal').modal('hide');
+            setTimeout(function () {
+              $('#homepagevid')[0].play();
+              $('#homepagevid').on('ended', function () {
+                window.location.href = 'Simulation_Selector.html';
+              });
+            }, 0);
+          }
+        }, 1000);
+
+      });
+    });
+
+  </script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+      function checkDeviceWidthAndOrientation() {
+        return window.innerWidth < window.innerHeight;
+      }
+
+      function showWarningMessage() {
+        document.body.innerHTML = ''; // Clear the body content
+        var warningMessage = document.createElement('div');
+        warningMessage.id = 'warning-message';
+        warningMessage.innerHTML = '<h1>Please use in landscape mode. Thank you!</p>';
+        document.body.appendChild(warningMessage);
+        warningMessage.style.display = 'block';
+      }
+
+      if (checkDeviceWidthAndOrientation()) {
+        showWarningMessage();
+      }
+
+      // Optional: Re-check on window resize
+      window.addEventListener("resize", function () {
+        if (checkDeviceWidthAndOrientation()) {
+          showWarningMessage();
+        } else {
+          location.reload(); // Reload the page if the conditions are met
+        }
+      });
+    });
+
+
+    let start = new Date().getTime();
+
+    const originPosition = { x: 0, y: 0 };
+
+    const last = {
+      starTimestamp: start,
+      starPosition: originPosition,
+      mousePosition: originPosition
+    }
+
+    const config = {
+      starAnimationDuration: 1500,
+      minimumTimeBetweenStars: 40,
+      minimumDistanceBetweenStars: 75,
+      glowDuration: 75,
+      maximumGlowPointSpacing: 10,
+      colors: ["249 146 253", "252 254 255"],
+      sizes: ["1rem", "1rem", "1rem"],
+      animations: ["fall-1", "fall-2", "fall-3"]
+    }
+
+    let count = 0;
+    const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+      selectRandom = items => items[rand(0, items.length - 1)];
+
+    const withUnit = (value, unit) => `${value}${unit}`,
+      px = value => withUnit(value, "px"),
+      ms = value => withUnit(value, "ms");
+
+    const calcDistance = (a, b) => {
+      const diffX = b.x - a.x,
+        diffY = b.y - a.y;
+      return Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+    }
+
+    const calcElapsedTime = (start, end) => end - start;
+
+    const appendElement = element => document.body.appendChild(element),
+      removeElement = (element, delay) => setTimeout(() => document.body.removeChild(element), delay);
+
+    const createStar = position => {
+      const star = document.createElement("span"),
+        color = selectRandom(config.colors);
+      star.className = "star";
+      star.style.left = px(position.x + 22);
+      star.style.top = px(position.y + 22);
+      star.style.fontSize = selectRandom(config.sizes);
+      star.style.color = `rgb(${color})`;
+      star.style.textShadow = `0px 0px 1.5rem rgb(${color} / 0.5)`;
+      star.style.animationName = config.animations[count++ % 3];
+      star.style.starAnimationDuration = ms(config.starAnimationDuration);
+      appendElement(star);
+
+      removeElement(star, config.starAnimationDuration);
+    }
+
+    const createGlowPoint = position => {
+      const glow = document.createElement("div");
+      glow.className = "glow-point";
+      glow.style.left = px(position.x);
+      glow.style.top = px(position.y);
+      appendElement(glow)
+      removeElement(glow, config.glowDuration);
+    }
+
+    const determinePointQuantity = distance => Math.max(
+      Math.floor(distance / config.maximumGlowPointSpacing),
+      1
+    );
+
+    const createGlow = (last, current) => {
+      const distance = calcDistance(last, current),
+        quantity = determinePointQuantity(distance);
+      const dx = (current.x - last.x) / quantity,
+        dy = (current.y - last.y) / quantity;
+      Array.from(Array(quantity)).forEach((_, index) => {
+        const x = last.x + dx * index,
+          y = last.y + dy * index;
+        createGlowPoint({ x, y });
+      });
+    }
+
+    const updateLastStar = position => {
+      last.starTimestamp = new Date().getTime();
+
+      last.starPosition = position;
+    }
+
+    const updateLastMousePosition = position => last.mousePosition = position;
+
+    const adjustLastMousePosition = position => {
+      if (last.mousePosition.x === 0 && last.mousePosition.y === 0) {
+        last.mousePosition = position;
+      }
+    };
+
+    const handleOnMove = e => {
+      const mousePosition = { x: e.clientX, y: e.clientY }
+      adjustLastMousePosition(mousePosition);
+      const now = new Date().getTime(),
+        hasMovedFarEnough = calcDistance(last.starPosition, mousePosition) >= config.minimumDistanceBetweenStars,
+        hasBeenLongEnough = calcElapsedTime(last.starTimestamp, now) > config.minimumTimeBetweenStars;
+      if (hasMovedFarEnough || hasBeenLongEnough) {
+        createStar(mousePosition);
+        updateLastStar(mousePosition);
+      }
+      createGlow(last.mousePosition, mousePosition);
+      updateLastMousePosition(mousePosition);
+    }
+
+    window.onmousemove = e => handleOnMove(e);
+
+    window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+    document.body.onmouseleave = () => updateLastMousePosition(originPosition);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      function updateDateTime() {
+        const dateTimeElement = document.getElementById('dateTime');
+        const now = new Date();
+        dateTimeElement.innerHTML = now.toLocaleString('en-US', {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric',
+        }) + "<br> <p class='logo2' style='font-size: 1vw !important; '> <b>" + now.toLocaleString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        }) + "</b> </p>";
+
+      }
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+    });
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

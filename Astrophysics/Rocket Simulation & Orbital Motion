@@ -1,0 +1,332 @@
+/***********************************************************
+ * This is a simple simulation for projectile motion and 
+ * orbital motion. 
+ * Created by: Sal Khan: 
+ * Modified for the course: by Marwan Shwaiki  
+ * ********************************************************/
+
+//var studentName=              "My Name";
+
+/*********************************************/
+var exercise=1;
+/*********************************************/
+var launchAngle= 20;
+
+var launchAltitude=0;//km
+
+var launchSpeed= 7840;//m/s
+var Magnification=0.5;//max=55924
+/*********************************************/
+
+var atmosphere=0.0157;
+var frection=0;
+var stroke_off=1;
+var timeSpeed=100;
+var xVel=1;var yVel=1;
+var add_dot=0;
+var speedFactor=0.1; var TTS=200;
+var Engine=0;
+var engine=1;
+var deltaV=0.230; var slow=0;
+var moveX=0; var moveY=0;
+var audio = ('h4ttps://www.freesoundeffects.com/freepreview.php?id=466445.mp3');
+
+
+
+keyPressed = function() {
+    
+   
+    if (keyCode===97){deltaV=0.01;}// 1
+    if (keyCode===98){deltaV=0.02;}// 2
+    if (keyCode===99){deltaV=0.03;}// 3
+    if (keyCode===100){deltaV=0.04;}// 4
+    if (keyCode===101){deltaV=0.05;}// 5
+    if (keyCode===102){deltaV=0.005;}// 6
+    if (keyCode===103){deltaV=0.001;}// 5
+    if (keyCode===96){deltaV=0.1;}// 0
+    if (keyCode===83){TTS=10000;}// s
+    if (keyCode===68){TTS=1000;}// d
+    if (keyCode===70){TTS=100;}// f
+    
+    if (keyCode=== 38){
+        xVel=xVel+xVel*deltaV;
+        yVel=yVel+yVel*deltaV;
+        add_dot=1;
+        //timeSpeed=timeSpeed*2;
+        //Magnification=Magnification*2;
+        }
+    if (keyCode=== 40){
+        xVel=xVel-xVel*deltaV;
+        yVel=yVel-yVel*deltaV
+        ;
+        add_dot=2;
+        //timeSpeed=timeSpeed/2;
+        //Magnification=Magnification/2;
+        }    
+    if (keyCode=== 37){
+        speedFactor=-1;
+        timeSpeed = timeSpeed+100*speedFactor;
+        }  
+    if (keyCode=== 39){
+        speedFactor=+1;
+        timeSpeed = timeSpeed+100*speedFactor;
+        }  
+};
+
+
+
+// The Main Program (dont Edit while doing the exercises)
+//@ Power 100,000, screen=127mx127m
+    if (exercise===1){
+        var scalePower=Magnification;//screen=127mx127m
+        var xx= 300+moveX;
+        var yy= 300+moveY;  
+        var timeSpeed= launchSpeed*0.005/Magnification;
+        
+            if (Magnification>5){
+            var scalePower=Magnification;//screen=127mx127m
+            var xx= 570;
+            var yy= 480;  
+            var timeSpeed= 1+launchSpeed*0.005/Magnification;//*launchSpeed*0.1;
+            }
+    }
+
+
+   
+    
+fill(255, 0, 128);
+textSize(15);
+text ("Exe: "+ exercise,500,30);
+//text (studentName,250,30);
+textSize(15);
+text ("launchAngle=    "+ launchAngle,5,15);
+text ("launchAltitude= "+ launchAltitude,5,35);
+text ("launchSpeed=   "+ launchSpeed,5,55);
+
+
+/**********************************************/
+
+var launchAngle = launchAngle; //launch angle in degrees
+var launchSpeed = launchSpeed; //launch spped in m/s
+var launchAltitude = launchAltitude * pow(10, 3); //how high above the surface is the launch
+var planetMass = 5.97 * pow(10,24); //mass in kg
+var projectileMass = 1 * pow(10,1); //mass in kg
+var planetRadius = 6371 * pow(10, 3); //in meters
+var projectileRadius = 0; //radius in meters
+var angleA;
+//var scalePower = scale1;
+//var Scale = scalePower*planetRadius;// * pow (10,scalePower);
+//var Scale = 1;
+
+
+//Where and how big the "planet" gets depicted
+var metersPerPixel = 21237;//planetRadius;//scalePower;
+var pixDiam = planetRadius*scalePower / metersPerPixel * 2;
+var centerX = xx;//+cos(90*3.1415/180)*(pixDiam/2);
+var centerY = yy+(pixDiam*0);
+
+moveX=Magnification*pixDiam; 
+moveY=Magnification*pixDiam;
+xx= 300+moveX;
+yy= 300+moveY;  
+
+
+//timeSpeed = timeSpeed+timeSpeed*speedFactor;
+
+
+var oldTime = millis(); //used to keep track of change in time
+
+
+var r = planetRadius; //keep track of current radius
+
+var gConst = 6.673 * pow(10, -11); //gravitational constant
+//Coordinates assume that (0, 0) is the center of canvas
+//var x = planetRadius + launchAltitude; //keep track the x position in meters
+var x = 0;
+var y = planetRadius + launchAltitude; //keep track of the y position in meters
+//text ("y=   "+ y,300,150);
+//text ("r=   "+ r,420,150);
+
+//x and y components of velocity
+var xVel = launchSpeed * cos(180-launchAngle);
+var yVel = launchSpeed * sin(180-launchAngle);
+
+//shift the coordinate (0,0) to be the "center" of the canvas
+translate(centerX, centerY);
+
+//only draw the background once
+background(0, 0, 0);
+
+//Draw the "planet"
+
+//ellipse(-40, -390, 50, 50);
+
+stroke(24, 57, 189);
+fill(15, 8, 12);//100km
+ellipse(0, 0, pixDiam+pixDiam*atmosphere, pixDiam+pixDiam*atmosphere);
+fill(23, 12, 19);//10km
+ellipse(0, 0, pixDiam+pixDiam*atmosphere/10, pixDiam+pixDiam*atmosphere/10);
+
+fill(33, 16, 27);//1km
+ellipse(0, 0, pixDiam+pixDiam*atmosphere/100, pixDiam+pixDiam*atmosphere/100);
+
+fill(71, 33, 57); //100m
+ellipse(0, 0, pixDiam+pixDiam*atmosphere/1000, pixDiam+pixDiam*atmosphere/1000);
+
+
+
+stroke(199, 44, 196);
+fill(0, 0, 0);
+//Orbit 1
+ellipse(0, 0, 5000/6371*pixDiam+pixDiam, 5000/6371*pixDiam+pixDiam);
+//Orbit 2
+stroke(84, 120, 84);//green
+ellipse(0, 0, 2000/6371*pixDiam+pixDiam, 2000/6371*pixDiam+pixDiam);
+
+//lines ---------------------
+stroke(69, 67, 67);
+line(0, -290, 0, 290);
+line(-290, 0, 290, 0);
+//line(-300, 300-pixDiam, 300, 300-pixDiam);
+
+
+stroke(201, 187, 201); //atmosphere
+fill(55, 185, 232); //Earth
+ellipse(0, 0, pixDiam, pixDiam);
+
+fill(224, 121, 65); //Mars
+ellipse(290, -290, 10, 10);
+
+//Set the stroke color for the projectile path
+stroke(201, 187, 201);
+//if (projColor===1) {stroke(179, 157, 179);}
+
+//text (oldTime,10,15);
+fill(240, 218, 226);
+
+
+//draw() is repeatedly called to animate the simulation
+
+var draw = function() {
+    
+    //how far is the object from the center of the planet
+    r = sqrt(pow(x,2)+pow(y,2));
+    //only continue to run the simulation if the object
+    //is not below the surface of the planet
+    
+      //var draw = function() {
+
+
+
+    if (r >= planetRadius) {
+        
+
+        
+         //What is the old g-field of the planet
+        //Using convention of negative meaning toward the 
+        //Center of mass of planet
+        var rAccel = -1.0 *gConst * planetMass / pow(r, 2);
+        var xAccel = rAccel * x/r; //x-comp of acceleration
+        var yAccel = rAccel * y/r; //y-comp of acceleration
+        
+       
+        //Figure out how much time has passed
+        var newTime = millis();
+        //make sure to adjust dt by timeScale
+        var dt = (newTime - oldTime) * timeSpeed/TTS;
+        oldTime = newTime;
+        
+           
+       //Collession
+       if (r < planetRadius+planetRadius*atmosphere && yVel<0) {
+        stroke(219, 147, 99);
+        if (stroke_off===1){strokeWeight(4); stroke_off=0;}
+        xVel=xVel-xVel*frection;
+        yVel=yVel-yVel*frection*1.2;
+        }  
+
+        //new and avg velocity based on accelerating and
+        //change in time
+        var newXVel = xVel + xAccel * dt;
+        var newYVel = yVel + yAccel * dt;
+        var avgXVel = (xVel + newXVel)/2;
+        var avgYVel = (yVel + newYVel)/2;
+        
+        //Set up for the next iteration of loop
+        xVel = newXVel;
+        yVel = newYVel;
+    
+        //figure out the new x and y coordinate
+        x += avgXVel * dt/1;
+        y += avgYVel * dt/1;
+        
+        angleA=asin(y/r);
+        var angCircle=90; var alpha=-1;
+        if (x>=0){angCircle=270; alpha=1;} 
+        textSize(12);
+        stroke(0, 0, 0);
+        fill(0, 0, 0);
+        rect(0-xx,0-(yy),350,25);
+        rect(0-xx,0-(yy),120,90);
+        fill(250, 206, 30);//Yellow
+        text(round(r/1000),5-xx,15-(yy));
+        textSize(17);
+        
+        text(((r-planetRadius)/1000),55-xx,16-(yy));
+        text((alpha*angleA)+angCircle,170-xx,16-(yy));
+        
+        textSize(15);
+        text(round(x/1000),5-xx,40-(yy));
+        text(round(y/1000),70-xx,40-(yy));
+        text(speedFactor,5-xx,60-(yy));
+        text(timeSpeed,50-xx,60-(yy));
+        text(keyCode,5-xx,80-yy);
+        text(deltaV,30-xx,80-(yy));
+
+        
+        stroke(115, 117, 117);strokeWeight(1);Engine=0;
+        
+        //Engin ON
+        if (add_dot===1){
+        strokeWeight(2);
+        stroke(255, 242, 0);
+        Engine=2;
+        add_dot=0;
+        }
+        //Engin OFF
+        if (add_dot===2){
+        strokeWeight(2);
+        stroke(255, 0, 0);
+        Engine=2;
+        add_dot=0;
+        }          
+        
+        //draw the pixel of the location
+        
+        point(x/metersPerPixel*scalePower, -1 * y/metersPerPixel*scalePower);
+
+    
+mousePressed =function(){    
+    if (mouseIsPressed) {
+        stroke (0, 0, 0); fill(0, 0, 0);
+        rect(538-xx,576-yy,60,15);
+        fill(255, 0, 0);
+        point(mouseX-xx, mouseY-(yy+(pixDiam/2)));
+        textSize(15);
+        text(mouseX,540-xx,590-yy); 
+        text(mouseY,570-xx,590-yy);
+        
+        text((alpha*angleA)+angCircle,180-xx,20-(yy));
+    }
+};
+
+
+
+}
+//drawa();
+
+
+};
+
+
+
