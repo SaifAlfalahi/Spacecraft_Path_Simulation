@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spacecraft Simulator</title>
+    <link rel="icon" type="image/x-icon" href="/Design/Assets/images/favicon.ico">
+    <link rel="stylesheet" href="/Design/Assets/styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Raleway");
+
+        button {
+            position: relative;
+            color: #fff;
+            background-color: transparent;
+            text-decoration: none;
+            border: none;
+            height: 5vh;
+            width: 14vw;
+            letter-spacing: 0.05vw;
+            font-size: 1.6vw;
+            transition: 0.2s;
+            text-align: center;
+            backdrop-filter: blur(100vw);
+            box-shadow: 0 0 35px black;
+        }
+
+        button:hover {
+            letter-spacing: 0.2rem;
+            color: var(--clr);
+            animation: box 3s infinite;
+            cursor: url("/Design/Assets/images/cursor2.png"), auto;
+        }
+
+        button::before {
+            content: "";
+            position: absolute;
+            inset: 2px;
+        }
+
+        button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        button i {
+            position: absolute;
+            inset: 0;
+            display: block;
+            border-radius: 3vw;
+        }
+
+        button i::before {
+            content: "";
+            position: absolute;
+            width: 1.15vw;
+            height: .7vh;
+            left: 80%;
+            top: -2px;
+            border: 0.15vw solid var(--clr);
+            background: transparent;
+            transition: 0.2s;
+        }
+
+        button:hover i::before {
+            width: 1.3vw;
+            left: 20%;
+            animation: move 3s infinite;
+        }
+
+        button i::after {
+            content: "";
+            position: absolute;
+            width: 1.25vw;
+            height: 0.7vh;
+            left: 20%;
+            bottom: -2px;
+            border: 2px solid var(--clr);
+            background: transparent;
+            transition: 0.2s;
+        }
+
+        button:hover i::after {
+            width: 1.4;
+            left: 80%;
+            animation: move 3s infinite;
+            border: 2px solid var(--clr);
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes box {
+            0% {
+                box-shadow: #27272c;
+            }
+
+            50% {
+                box-shadow: 0 0 25px var(--clr);
+            }
+
+            100% {
+                box-shadow: #27272c;
+            }
+        }
+
+        .glow-point {
+            position: absolute;
+            box-shadow: 0rem 0rem 1.2rem 0.6rem rgb(var(--glow-rgb));
+            pointer-events: none;
+        }
+
+        .star {
+            background-image: url('/Design/Assets/images/sparkler.png');
+            background-size: contain;
+            position: absolute;
+            z-index: 2;
+            color: white;
+            width: 1.2rem;
+            height: 1.2rem;
+            animation-duration: 1500ms;
+            animation-fill-mode: forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fall-1 {
+            0% {
+                transform: translate(0px, 0px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(0.25);
+                opacity: 0;
+            }
+
+            5% {
+                transform: translate(10px, -10px) rotateX(45deg) rotateY(30deg) rotateZ(0deg) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(25px, 200px) rotateX(180deg) rotateY(270deg) rotateZ(90deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fall-2 {
+            0% {
+                transform: translate(0px, 0px) rotateX(-20deg) rotateY(10deg) scale(0.25);
+                opacity: 0;
+            }
+
+            10% {
+                transform: translate(-10px, -5px) rotateX(-20deg) rotateY(10deg) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-10px, 160px) rotateX(-90deg) rotateY(45deg) scale(0.25);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fall-3 {
+            0% {
+                transform: translate(0px, 0px) rotateX(0deg) rotateY(45deg) scale(0.5);
+                opacity: 0;
+            }
+
+            15% {
+                transform: translate(7px, 5px) rotateX(0deg) rotateY(45deg) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(20px, 120px) rotateX(-180deg) rotateY(-90deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .btn-outline-light {
+            width: 16vw;
+            height: 6vh;
+            font-size: 1.2vw;
+            overflow: hidden;
+        }
+
+        body {
+            color: white;
+            padding: 0px;
+            margin: 0px;
+            overflow: hidden;
+            height: 100vh;
+            cursor: url('/Design/Assets/images/cursor.png'), auto;
+        }
+
+        .glassContainer {
+            width: 65vw;
+            height: 65vh;
+            border: 0px solid #ddd !important;
+            z-index: 1;
+            position: fixed;
+            border-radius: 1vw;
+            backdrop-filter: blur(0.2vw);
+            padding: 2vw;
+        }
+
+        .containsVid {
+            background-image: url('/Design/Assets/images/galaxy.png');
+            background-size: cover;
+            background-repeat: repeat;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            margin-top: 0vh;
+            align-items: center;
+            z-index: 0;
+            display: flex;
+        }
+
+        .titleFont {
+            font-size: 1.5vw;
+        }
+
+        .gc {
+            transition: opacity 0.2s ease-in;
+            opacity: 1;
+            overflow: hidden;
+            box-shadow: 0 0 1em 0.2em #000000;
+            transition: 0.16s ease-in;
+        }
+
+        .modal-content {
+            color: white;
+            background-color: #252525;
+            margin-left: -22.5vw;
+            margin-top: 10vh;
+            width: 75vw !important;
+            height: 80vh !important;
+            z-index: 100;
+        }
+
+        .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2vw;
+            text-align: center;
+            color: white;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #hoverText {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="containsVid">
+        <div class="d-flex gap-2 glassContainer gc flex-column justify-content-between">
+            <div>
+                <p class="titleFont">Select Simulations</p>
+            </div>
+            <div class="center-text" id="hoverText">Hover over a button to see details</div>
+            <div class="center-text" id="hoverText1">Information about simulation 1</div>
+            <div class="center-text" id="hoverText2">Information about simulation 2</div>
+            <div class="center-text" id="hoverText3">Information about simulation 3</div>
+
+            <div class="d-flex justify-content-between gap-2 w-100">
+                <div class="btn1"><button id="ClickedButton0" style="--clr:#0FF0FC"><span>Simulation
+                            1</span><i></i></button></div>
+                <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Simulation 2</span><i></i></button></div>
+                <div><button id="ClickedButton2" style="--clr:#8A2BE2"><span>Simulation 3</span><i></i></button></div>
+            </div>
+        </div>
+        <video id="homepagevid" style="width: 100vw;" autoplay muted loop>
+            <source src="/Design/Assets/videos/close earth.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+    </div>
+
+    <!-- Modal HTML -->
+    <div class="modal fade" id="timerModal" tabindex="-1" aria-labelledby="timerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Your journey will start in <span id="modalTimer">3</span> seconds.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let video = document.getElementById("homepagevid");
+        video.playbackRate = 0.60;
+    </script>
+    <script>
+        $(document).ready(function () {
+            const gcElement = $(".gc");
+
+            const buttons = [
+                { id: "#ClickedButton0", color: "#0FF0FC", textId: "#hoverText1" },
+                { id: "#ClickedButton1", color: "#39FF14", textId: "#hoverText2" },
+                { id: "#ClickedButton2", color: "#8A2BE2", textId: "#hoverText3" }
+            ];
+
+            const hoverTextElement = $("#hoverText");
+            let timeout;
+
+            // Set the default opacity of hoverText to 1
+            hoverTextElement.css("opacity", 1);
+
+            buttons.forEach(button => {
+                const btnElement = $(button.id);
+                const textElement = $(button.textId);
+
+                if (btnElement.length && textElement.length) {
+                    btnElement.hover(
+                        function () {
+                            gcElement.css("box-shadow", `0 0 1em 0.2em ${button.color}`);
+                            hoverTextElement.css("opacity", 0);
+                            clearTimeout(timeout);
+                            timeout = setTimeout(() => {
+                                textElement.css("opacity", 1);
+                            }, 150); // Add a delay of 300ms before showing the new text
+                        },
+                        function () {
+                            gcElement.css("box-shadow", `0 0 1em 0.2em #000000`); // Default shadow
+                            textElement.css("opacity", 0);
+                            clearTimeout(timeout);
+                            timeout = setTimeout(() => {
+                                hoverTextElement.css("opacity", 1);
+                            }, 150); // Add a delay of 300ms before showing the default text
+                        }
+                    );
+                }
+            });
+        });
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            function checkDeviceWidthAndOrientation() {
+                return window.innerWidth < window.innerHeight;
+            }
+
+            function showWarningMessage() {
+                document.body.innerHTML = ''; // Clear the body content
+                var warningMessage = document.createElement('div');
+                warningMessage.id = 'warning-message';
+                warningMessage.innerHTML = '<h1>Please use in landscape mode. Thank you!</p>';
+                document.body.appendChild(warningMessage);
+                warningMessage.style.display = 'block';
+            }
+
+            if (checkDeviceWidthAndOrientation()) {
+                showWarningMessage();
+            }
+
+            // Optional: Re-check on window resize
+            window.addEventListener("resize", function () {
+                if (checkDeviceWidthAndOrientation()) {
+                    showWarningMessage();
+                } else {
+                    location.reload(); // Reload the page if the conditions are met
+                }
+            });
+        });
+
+        let start = new Date().getTime();
+
+        const originPosition = { x: 0, y: 0 };
+
+        const last = {
+            starTimestamp: start,
+            starPosition: originPosition,
+            mousePosition: originPosition
+        }
+
+        const config = {
+            starAnimationDuration: 1500,
+            minimumTimeBetweenStars: 40,
+            minimumDistanceBetweenStars: 75,
+            glowDuration: 75,
+            maximumGlowPointSpacing: 10,
+            colors: ["249 146 253", "252 254 255"],
+            sizes: ["1rem", "1rem", "1rem"],
+            animations: ["fall-1", "fall-2", "fall-3"]
+        }
+
+        let count = 0;
+        const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min,
+            selectRandom = items => items[rand(0, items.length - 1)];
+
+        const withUnit = (value, unit) => `${value}${unit}`,
+            px = value => withUnit(value, "px"),
+            ms = value => withUnit(value, "ms");
+
+        const calcDistance = (a, b) => {
+            const diffX = b.x - a.x,
+                diffY = b.y - a.y;
+            return Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+        }
+
+        const calcElapsedTime = (start, end) => end - start;
+
+        const appendElement = element => document.body.appendChild(element),
+            removeElement = (element, delay) => setTimeout(() => document.body.removeChild(element), delay);
+
+        const createStar = position => {
+            const star = document.createElement("span"),
+                color = selectRandom(config.colors);
+            star.className = "star";
+            star.style.left = px(position.x + 22);
+            star.style.top = px(position.y + 22);
+            star.style.fontSize = selectRandom(config.sizes);
+            star.style.color = `rgb(${color})`;
+            star.style.textShadow = `0px 0px 1.5rem rgb(${color} / 0.5)`;
+            star.style.animationName = config.animations[count++ % 3];
+            star.style.starAnimationDuration = ms(config.starAnimationDuration);
+            appendElement(star);
+
+            removeElement(star, config.starAnimationDuration);
+        }
+
+        const createGlowPoint = position => {
+            const glow = document.createElement("div");
+            glow.className = "glow-point";
+            glow.style.left = px(position.x);
+            glow.style.top = px(position.y);
+            appendElement(glow)
+            removeElement(glow, config.glowDuration);
+        }
+
+        const determinePointQuantity = distance => Math.max(
+            Math.floor(distance / config.maximumGlowPointSpacing),
+            1
+        );
+
+        const createGlow = (last, current) => {
+            const distance = calcDistance(last, current),
+                quantity = determinePointQuantity(distance);
+            const dx = (current.x - last.x) / quantity,
+                dy = (current.y - last.y) / quantity;
+            Array.from(Array(quantity)).forEach((_, index) => {
+                const x = last.x + dx * index,
+                    y = last.y + dy * index;
+                createGlowPoint({ x, y });
+            });
+        }
+
+        const updateLastStar = position => {
+            last.starTimestamp = new Date().getTime();
+
+            last.starPosition = position;
+        }
+
+        const updateLastMousePosition = position => last.mousePosition = position;
+
+        const adjustLastMousePosition = position => {
+            if (last.mousePosition.x === 0 && last.mousePosition.y === 0) {
+                last.mousePosition = position;
+            }
+        };
+
+        const handleOnMove = e => {
+            const mousePosition = { x: e.clientX, y: e.clientY }
+            adjustLastMousePosition(mousePosition);
+            const now = new Date().getTime(),
+                hasMovedFarEnough = calcDistance(last.starPosition, mousePosition) >= config.minimumDistanceBetweenStars,
+                hasBeenLongEnough = calcElapsedTime(last.starTimestamp, now) > config.minimumTimeBetweenStars;
+            if (hasMovedFarEnough || hasBeenLongEnough) {
+                createStar(mousePosition);
+                updateLastStar(mousePosition);
+            }
+            createGlow(last.mousePosition, mousePosition);
+            updateLastMousePosition(mousePosition);
+        }
+
+        window.onmousemove = e => handleOnMove(e);
+
+        window.ontouchmove = e => handleOnMove(e.touches[0]);
+
+        document.body.onmouseleave = () => updateLastMousePosition(originPosition);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
