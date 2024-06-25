@@ -1,6 +1,6 @@
 # Spacecraft Path Simulation Web Application
 
-https://saifalfalahi.github.io/Spacecraft_Path_Simulation/Design/HomePage_0.1.html
+https://saifalfalahi.github.io/Spacecraft_Path_Simulation/Main/HomePage_0.1.html
 
 ## Overview
 This web application simulates the path of a spacecraft from Earth to Mars (possibly more planets), demonstrating the process of finding a launch window, entering a Hohmann transfer orbit, and reaching Mars. It is designed for educational purposes, particularly for workshops and programs targeting beginners and school students.
