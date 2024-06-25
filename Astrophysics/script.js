@@ -50,6 +50,7 @@ let planetDistances = {
     neptune: 30
 };
 
+
 function selectPlanet(planet) {
     let distance = planetDistances[planet];
     document.getElementById('result').innerText = `Selected Planet: ${planet.charAt(0).toUpperCase() + planet.slice(1)}, Distance from Sun: ${distance} AU`;
@@ -110,6 +111,24 @@ function convertValues() {
     document.getElementById('result5').innerText = `∆V2: ${delta_vel2} AU`;
     document.getElementById('result6').innerText = `Total ∆V: ${delta_total} AU`;
 
+    // Show the Detailed Calculation button
+    showDetailedCalculationButton();
+
+}
+
+function showDetailedCalculationButton() {
+    const existingButton = document.getElementById('detailed-calculation-button');
+    if (!existingButton) {
+        const button = document.createElement('button');
+        button.id = 'detailed-calculation-button';
+        button.textContent = 'Detailed Calculation';
+        button.onclick = showDetailedCalculations;
+        document.querySelector('.hohmann-transfer').appendChild(button);
+    }
+}
+
+function showDetailedCalculations() {
+    window.location.href = 'calculations.html';
 }
 
 //launch windown calculator 
