@@ -40,20 +40,20 @@ planetButtons.forEach(button => {
 });
 
 let planetDistances = {
-    mercury: 0.39,
-    venus: 0.72,
-    earth: 1,
-    mars: 1.5,
-    jupiter: 5.2,
-    saturn: 9.538,
-    uranus: 19,
-    neptune: 30
+    Mercury: 0.39,
+    Venus: 0.72,
+    Earth: 1,
+    Mars: 1.5,
+    Jupiter: 5.2,
+    Saturn: 9.538,
+    Uranus: 19,
+    Neptune: 30
 };
 
 
 function selectPlanet(planet) {
     let distance = planetDistances[planet];
-    document.getElementById('result').innerText = `Selected Planet: ${planet.charAt(0).toUpperCase() + planet.slice(1)}, Distance from Sun: ${distance} AU`;
+    document.getElementById('result').innerText = `${planet}'s Distance from Sun: ${distance} AU`;
 }
 
 function convertValues() {
