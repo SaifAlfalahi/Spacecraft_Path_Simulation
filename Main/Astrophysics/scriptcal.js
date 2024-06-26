@@ -132,5 +132,5 @@ function convertValues()
 }
 
 function goBack() {
-    window.location.href = 'index.html'; // Adjust the path if the main page is in a different directory
+    window.location.href = 'solarsystem.html'; // Adjust the path if the main page is in a different directory
 }

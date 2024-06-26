@@ -50,10 +50,9 @@ let planetDistances = {
     neptune: 30
 };
 
-
 function selectPlanet(planet) {
     let distance = planetDistances[planet];
-    document.getElementById('result').innerText = `${planet}'s Distance from Sun: ${distance} AU`;
+    document.getElementById('result').innerText = `Selected Planet: ${planet.charAt(0).toUpperCase() + planet.slice(1)}, Distance from Sun: ${distance} AU`;
 }
 
 function convertValues() {
@@ -68,7 +67,7 @@ function convertValues() {
     let h_km = (a1 + b1)/2.0;
     let h_au = h_km/a1;
 
-    //To find mechanical energy of space craft in earth's parking orbit 
+    //To find mechanical energy of space craft in earth's parking orbit
     const GM = 1.33e11;
     let MEnergy_PO = (GM/((-2)*a1));
 
@@ -111,27 +110,39 @@ function convertValues() {
     document.getElementById('result5').innerText = `∆V2: ${delta_vel2} AU`;
     document.getElementById('result6').innerText = `Total ∆V: ${delta_total} AU`;
 
-    // Show the Detailed Calculation button
-    showDetailedCalculationButton();
-
 }
 
-function showDetailedCalculationButton() {
-    const existingButton = document.getElementById('detailed-calculation-button');
-    if (!existingButton) {
-        const button = document.createElement('button');
-        button.id = 'detailed-calculation-button';
-        button.textContent = 'Detailed Calculation';
-        button.onclick = showDetailedCalculations;
-        document.querySelector('.hohmann-transfer').appendChild(button);
+const planets = {
+    Mars: { period: 687, synodicPeriod: 780, lastLaunch: new Date('2022-09-01') },
+    Mercury: { period: 88 },
+    Venus: { period: 224.7 },
+    Earth: { period: 365.25 },
+    Jupiter: { period: 4331 },
+    Saturn: { period: 10747 },
+    Uranus: { period: 30589 },
+    Neptune: { period: 59800 }
+};
+
+
+function updatePlanetPositions(date) {
+    const startDate = new Date("2024-01-01");
+    const elapsedDays = (date - startDate) / (1000 * 60 * 60 * 24);
+
+    for (let key in planets) {
+        const planet = planets[key];
+        const orbitElement = document.querySelector(`.${key.toLowerCase()}-orbit`);
+        const degrees = (elapsedDays / planet.period * 360) % 360;
+        orbitElement.style.transform = `rotate(${degrees}deg)`;
     }
 }
 
-function showDetailedCalculations() {
-    window.location.href = 'calculations.html';
-}
 
-//launch windown calculator 
+document.getElementById("start-date").addEventListener("change", function() {
+    updatePlanetPositions(new Date(this.value));
+});
+
+
+//launch windown calculator
 document.addEventListener("DOMContentLoaded", function() {
     const planets = [
         { name: "Mars", synodicPeriod: 780, lastLaunch: new Date('2022-09-01') }
@@ -143,38 +154,26 @@ document.addEventListener("DOMContentLoaded", function() {
             alert("Please select a start date.");
             return;
         }
-
+    
         const tableBody = document.getElementById("launchWindowTable");
-        tableBody.innerHTML = ""; // Clear previous results
-
-        planets.forEach(planet => {
-            const { name, synodicPeriod, lastLaunch } = planet;
-
-            let nextLaunchWindow = new Date(lastLaunch.getTime());
-            while (nextLaunchWindow <= startDate) {
-                nextLaunchWindow = new Date(nextLaunchWindow.getTime() + synodicPeriod * 24 * 60 * 60 * 1000);
+        tableBody.innerHTML = "";
+    
+        for (let key in planets) {
+            if (planets[key].synodicPeriod) {
+                const { synodicPeriod, lastLaunch } = planets[key];
+                let nextLaunchWindow = new Date(lastLaunch.getTime());
+                while (nextLaunchWindow <= startDate) {
+                    nextLaunchWindow = new Date(nextLaunchWindow.getTime() + synodicPeriod * 24 * 60 * 60 * 1000);
+                }
+    
+                const formattedLaunchWindow = nextLaunchWindow.toLocaleDateString(undefined, {year: 'numeric', month: 'short' });
+    
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${formattedLaunchWindow}</td>`;
+                tableBody.appendChild(row);
             }
-
-            // Format the date as "Month Year"
-            const options = {year: 'numeric', month: 'short' };
-            const formattedLaunchWindow = nextLaunchWindow.toLocaleDateString(undefined, options);
-
-            const row = document.createElement("tr");
-
-            const nameCell = document.createElement("td");
-            nameCell.textContent = name;
-
-            const launchWindowCell = document.createElement("td");
-            launchWindowCell.textContent = formattedLaunchWindow;
-
-            row.appendChild(nameCell);
-            row.appendChild(launchWindowCell);
-
-            tableBody.appendChild(row);
-        });
+        }
     }
-
+    
     window.calculateLaunchWindows = calculateLaunchWindows;
 });
-
-
