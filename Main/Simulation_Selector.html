@@ -273,6 +273,8 @@
             height: 100vh;
             cursor: url('Assets/images/cursor.png'), auto;
             font-family: "Zen Dots", sans-serif;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
 
         }
 
@@ -354,7 +356,7 @@
 
             <div class="d-flex justify-content-between gap-2 w-100">
                 <div><button id="ClickedButton0" style="--clr:#0FF0FC"><span>Solar System</span><i></i></button></div>
-                <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Simulation 2</span><i></i></button></div>
+                <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Real time</span><i></i></button></div>
                 <div><button id="ClickedButton2" style="--clr:#8A2BE2"><span>Simulation 3</span><i></i></button></div>
             </div>
         </div>
@@ -495,6 +497,28 @@
                                     clearInterval(interval);
                                       $('#timerModal').modal('hide');
                                       window.location.href = 'Astrophysics/solarsystem.html';
+                                }
+                            }, 1000);
+                        });
+                    }
+
+                    if (button.id === "#ClickedButton1") {
+                        btnElement.click(function () {
+                            $('.gc').css('opacity', '0');
+                            $('#showModalButton').css('opacity', '0');
+                            setTimeout(function () {
+                                $('.gc').css('display', 'none');
+                            }, 200); // Timeout matches the duration of the transition
+
+                            $('#timerModal').modal('show');
+                            var timer = 3;
+                            var interval = setInterval(function () {
+                                timer--;
+                                $('#modalTimer').text(timer);
+                                if (timer <= 0) {
+                                    clearInterval(interval);
+                                      $('#timerModal').modal('hide');
+                                      window.location.href = 'Astrophysics/real-time-solarsystem/real-time.html';
                                 }
                             }, 1000);
                         });
