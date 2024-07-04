@@ -12,8 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
-    background: url('bg-stars.png') repeat;
+    margin-top: 10vh;
 }
 
 
@@ -29,7 +28,7 @@ body {
 
 .orbit {
     position: absolute;
-    border: 1px dashed gray;
+    border: 1px solid gray;
     border-radius: 50%;
     transform-origin: center;
     animation: none;
@@ -53,7 +52,11 @@ body {
     top: 50%;
     left: 50%;
     transform-origin: center;
-    transform: transform 0.3s ease;
+    background-size: cover !important;
+}
+.planet , .orbit{
+    transition: opacity 0.5s ease-in-out !important;
+
 }
 
 .planet:hover {
@@ -99,3 +102,9 @@ body {
     height: 25px;
 }
 
+#start-date{
+    position: fixed;
+    opacity: 0;
+}
+
+/* Slider style */

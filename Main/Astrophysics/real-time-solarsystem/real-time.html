@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar System with Hohmann Transfer</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
     <div class="solar-system">
@@ -20,7 +21,9 @@
     </div>
 
     <div class="controls">
-        <div id="dateDisplay">Date: 2024-01-01 </div>
+        <div id="dateDisplay">Date: 2024-07-09</div>
+        <input type="range" id="zoom-slider" min="10" max="26" value="12">
+        <input type="range" id="date-slider" min="0" max="186" value="0">
         <button id="playPauseBtn">Play</button>
         <input type="date" id="start-date">
     </div>

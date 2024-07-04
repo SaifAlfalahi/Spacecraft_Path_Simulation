@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const playPauseBtn = document.getElementById("playPauseBtn");
     const dateInput = document.getElementById("start-date");
     const dateDisplay = document.getElementById("dateDisplay");
+    const dateSlider = document.getElementById("date-slider");
+
 
     let animationInterval;
     let isPlaying = true; // Start with the animation playing
@@ -19,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Uranus: { period: 30589, initialAngle: 35 },
         Neptune: { period: 59800, initialAngle: 95 }
     };
-
+    
     function updatePlanetPositions(date) {
         const daysElapsed = (date - referenceDate) / (1000 * 60 * 60 * 24);
 
@@ -56,6 +58,16 @@ document.addEventListener("DOMContentLoaded", function() {
         updatePlanetPositions(currentDate);
     });
 
+    dateSlider.addEventListener("input", function() {
+        const startDate = new Date("2024-07-09");
+        const monthsToAdd = this.value;
+        const newDate = new Date(startDate.setMonth(startDate.getMonth() + parseInt(monthsToAdd)));
+        currentDate = newDate;
+        dateDisplay.textContent = `Date: ${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear()}`;
+        updatePlanetPositions(currentDate);
+    });
+    
+
     // Set initial date input value to current date
     dateInput.value = currentDate.toISOString().slice(0, 10);
     dateDisplay.textContent = `Date: ${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear()}`;
@@ -68,4 +80,21 @@ document.addEventListener("DOMContentLoaded", function() {
         dateDisplay.textContent = `Date: ${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear()}`;
         updatePlanetPositions(currentDate);
     }, 100);
+});
+
+//Slider script
+var initialScaleValue = $('#zoom-slider').val() / 10;
+    $('.solar-system').css('transform', 'scale(' + initialScaleValue + ')');
+// Slider script to scale the solar system
+$('#zoom-slider').on('input change', function () {                    
+    var scaleValue = $(this).val() / 10;
+    $('.solar-system').css('transform', 'scale(' + scaleValue + ')');
+
+    if (scaleValue >= 2.6) { // Max zoom value
+        $('.jupiter, .saturn, .uranus, .neptune, .venus, .mercury').css('opacity', '0');
+        $('.jupiter-orbit, .saturn-orbit, .uranus-orbit, .neptune-orbit, .venus-orbit, .mercury-orbit' ).css('opacity', '0');
+    } else {
+        $('.jupiter, .saturn, .uranus, .neptune, .venus, .mercury').css('opacity', '1');
+        $('.jupiter-orbit, .saturn-orbit, .uranus-orbit, .neptune-orbit, .venus-orbit, .mercury-orbit').css('opacity', '1');
+    }
 });
