@@ -1,0 +1,18 @@
+.slider {
+    margin-top: 100px;
+    transform: rotate(90deg); 
+  }
+  
+  input[type='range'] {
+    appearance: none !important;
+    background: #444;
+    height:15px;
+  }
+  
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background: #6393e5;
+    height: 30px;
+    width: 15px;
+    border: 2px solid white;
+  }
