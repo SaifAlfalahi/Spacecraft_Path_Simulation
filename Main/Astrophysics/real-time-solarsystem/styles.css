@@ -119,6 +119,16 @@ button:hover{
 .mercury-orbit { width: 150px; height: 150px; animation-duration: 2.41096s; }
 .venus-orbit { width: 200px; height: 200px; animation-duration: 6.16438s; }
 .earth-orbit { width: 250px; height: 250px; animation-duration: 10s; }
+.transfer-orbit {
+    width: 256px; /* Horizontal diameter */
+    height: 274px; /* Vertical diameter */
+    border: 1px solid red; 
+    border-radius: 100%; 
+    position: absolute;
+    left:0.2px;
+    transform-origin: center;
+    
+}
 .mars-orbit { width: 300px; height: 300px; animation-duration: 18.8219s; }
 .jupiter-orbit { width: 400px; height: 400px; animation-duration: 118.7123s; }
 .saturn-orbit { width: 500px; height: 500px; animation-duration: 294.76712s; }
@@ -150,6 +160,7 @@ button:hover{
 .venus { background: url('./images/venus.png') no-repeat center center; width: 20px; height: 20px; margin-left: -10px; margin-top: -110px; }
 .earth { background: url('./images/earth.png') no-repeat center center; width: 25px; height: 25px; margin-left: -12.5px; margin-top: -137.5px; }
 .mars { background: url('./images/mars.png') no-repeat center center; width: 20px; height: 20px; margin-left: -10px; margin-top: -160px; }
+.future_mars { border: dashed yellow;background: none; width: 20px; height: 20px; margin-left: -10px; margin-top: -160px; }
 .jupiter { background: url('./images/jupiter.png') no-repeat center center; width: 35px; height: 35px; margin-left: -17.5px; margin-top: -217.5px; }
 .saturn { background: url('./images/saturn.png') no-repeat center center; width: 30px; height: 30px; margin-left: -15px; margin-top: -265px; }
 .uranus { background: url('./images/uranus.png') no-repeat center center; width: 25px; height: 25px; margin-left: -12.5px; margin-top: -312.5px; }

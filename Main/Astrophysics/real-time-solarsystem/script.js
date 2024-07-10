@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         Venus: { period: 224.7, initialAngle: 315 }, 
         Earth: { period: 365.25, initialAngle: 160 },
         Mars: { period: 687, initialAngle: 70 },
+        Future_Mars: { period: 687, initialAngle: 310 },
         Jupiter: { period: 4331, initialAngle: 22 },
         Saturn: { period: 10747, initialAngle: 100 },
         Uranus: { period: 30589, initialAngle: 35 },
