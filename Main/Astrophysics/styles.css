@@ -52,6 +52,8 @@ body {
     left: 50%;
     transform-origin: center;
     transform: transform 0.3s ease;
+    background-size: cover !important;
+    
 }
 
 .planet:hover {

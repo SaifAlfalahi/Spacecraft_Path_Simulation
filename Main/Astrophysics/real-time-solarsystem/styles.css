@@ -84,6 +84,68 @@ button:hover{
     z-index: 100;
 }
 
+#date-slider {
+    -webkit-appearance: none; 
+    width: 100%;
+    height: 7px;
+    border-radius: 3px;
+  }
+  
+  /* Design slider button */
+  #date-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+  }
+  
+  #selector {
+    height: 104px;
+    width: 48px;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .selectBtn {
+    height: 48px;
+    width: 48px;
+    background-image: url("images/play.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+  }
+  #selectValue {
+    width: 48px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    background: #ffd200;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  #selectValue::after {
+    content: '';
+    border-top: 17px solid #ffd200;
+    border-left: 24px solid #000;
+    border-right: 24px solid #000;
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+  }
+  #progressBar {
+    width: 50%;
+    height: 7px;
+    background: #ffd200;
+    border-radius: 3px;
+    position: absolute;
+    top: 7.7vh;
+    left: 40px;
+  }
+
 .solar-system {
     position: relative;
     width: 0vw;
