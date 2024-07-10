@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const dateInput = document.getElementById("start-date");
   const dateDisplay = document.getElementById("dateDisplay");
   const dateSlider = document.getElementById("date-slider");
+  const planetvid = document.getElementsByClassName("planetvid");
+
+  
 
   let slider = document.getElementById("date-slider");
   let selector = document.getElementById("selector");
@@ -22,6 +25,25 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentDate = new Date();
 
   const referenceDate = new Date("2024-07-09"); // Reference date
+
+  slider.addEventListener("input", function () {
+    const referenceDate = new Date("2024-07-09"); // Reference date
+    const monthsToAdd = parseInt(this.value);
+    const newDate = new Date(referenceDate);
+    newDate.setMonth(newDate.getMonth() + monthsToAdd);
+  
+    currentDate = newDate;
+    dateDisplay.textContent = `Date: ${currentDate
+      .getDate()
+      .toString()
+      .padStart(2, "0")}-${(currentDate.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${currentDate.getFullYear()}`;
+    updatePlanetPositions(currentDate);
+    selectValue.innerHTML = this.value;
+    selector.style.left = this.value + "%";
+    progressBar.style.width = this.value + "%";
+  });
 
   const planets = {
     Mercury: { period: 88, initialAngle: 230 },
@@ -50,11 +72,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
+  for(let i=0 ; i < planetvid.length ; i++){
+    planetvid[i].playbackRate = 5; 
+  }
 
   function playPauseAnimation() {
     if (isPlaying) {
       clearInterval(animationInterval);
       playPauseBtn.innerHTML = "<img src='images/play.png' alt='play'>";
+      for(let i=0 ; i < planetvid.length ; i++){
+        planetvid[i].playbackRate = 0; 
+      }
     } else {
       animationInterval = setInterval(() => {
         currentDate.setDate(currentDate.getDate() + 1);
@@ -65,6 +93,9 @@ document.addEventListener("DOMContentLoaded", function () {
           .toString()
           .padStart(2, "0")}-${currentDate.getFullYear()}`;
         updatePlanetPositions(currentDate);
+        for(let i=0 ; i < planetvid.length ; i++){
+            planetvid[i].playbackRate = 5; 
+          }
       }, 100);
       playPauseBtn.innerHTML = "<img src='images/pause.png' alt='pause'>";
     }
