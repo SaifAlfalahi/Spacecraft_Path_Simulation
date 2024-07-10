@@ -1,19 +1,101 @@
 body {
     margin: 0;
-    background: black;
+    background: transparent;
     overflow: hidden;
-   
+    cursor: url("/Main/Assets/images/cursor.png"), auto;
+}
+.containsVid {
+    background-size: cover;
+    background-repeat: repeat;
+    justify-content: start;
+    margin-top: 0vh;
+    align-items: start;
+    z-index: 1;
+    display: flex;
+    position: fixed;
+    
+}
+
+#background{
+    z-index: 0;
+}
+
+.glassContainer {
+    width: 60vw;
+    height: 50vh;
+    top: 90vh;
+    left: 20vw;
+    border: 0px solid #ddd !important;
+    z-index: 1;
+    position: absolute;
+    border-radius: 2vw;
+    backdrop-filter: blur(0.2vw);
+    padding: 4vh !important;
+    padding-top: 2vh !important;
+    font-size: 1.5em;
+    gap: 1vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.date1{
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+.gc {
+    transition: 0.2s ease-in-out;
+    opacity: 1;
+    overflow: hidden;
+    box-shadow: 0 0 1em 0.2em #b1b1b1;
+    transition: 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.gc:hover{
+    box-shadow: 0 0 1em 0.5em #ffffff;
+
+}
+
+.slidercontrols{
+    width: 100%;
+}
+
+#playPauseBtn{
+    background: transparent;
+    border: none;
+}
+
+#playPauseBtn img{
+    width: 1.5vw;
+    background: transparent;
+}
+
+button:hover{
+    cursor: url("/Main/Assets/images/cursor2.png"), auto;
+
+}
+
+.zoomslider{
+    position: absolute;
+    height: 30vh;
+    top: 35vh;
+    left: 98vw;
+    z-index: 100;
 }
 
 .solar-system {
     position: relative;
-    width: 100vw;
+    width: 0vw;
     height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 7vh;
+    z-index: 19;
+    margin-left: -65vw;
 }
+
 
 
 .sun {
@@ -61,6 +143,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 19;
     transform-origin: center;
     background-size: cover !important;
 }
@@ -97,6 +180,7 @@ body {
     color: black;
     width: 200px;
     font-size: 1.5em;
+    z-index: 100;
 }
 
 #dateDisplay {

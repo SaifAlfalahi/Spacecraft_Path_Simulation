@@ -39,14 +39,14 @@ document.addEventListener("DOMContentLoaded", function() {
     function playPauseAnimation() {
         if (isPlaying) {
             clearInterval(animationInterval);
-            playPauseBtn.textContent = "Play";
+            playPauseBtn.innerHTML = "<img src='images/play.png' alt='play'>";
         } else {
             animationInterval = setInterval(() => {
                 currentDate.setDate(currentDate.getDate() + 1);
                 dateDisplay.textContent = `Date: ${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear()}`;
                 updatePlanetPositions(currentDate);
             }, 100);
-            playPauseBtn.textContent = "Pause";
+            playPauseBtn.innerHTML = "<img src='images/pause.png' alt='pause'>";
         }
         isPlaying = !isPlaying;
     }
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Set initial date input value to current date
     dateInput.value = currentDate.toISOString().slice(0, 10);
     dateDisplay.textContent = `Date: ${currentDate.getDate().toString().padStart(2, '0')}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getFullYear()}`;
-    playPauseBtn.textContent = "Pause";
+    playPauseBtn.innerHTML = "<img src='images/pause.png' alt='pause'>";
 
     // Initialize positions and start the animation
     updatePlanetPositions(currentDate);
