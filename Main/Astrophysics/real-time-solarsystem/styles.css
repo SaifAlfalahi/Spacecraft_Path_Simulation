@@ -244,8 +244,8 @@ button:hover {
   animation-duration: 10s;
 }
 .transfer-orbit {
-  width: 20vw; /* Horizontal diameter */
-  height: 28.3vh; /* Vertical diameter */
+  width: 10vw; /* Horizontal diameter */
+  height: 28vh; /* Vertical diameter */
   border: 3px dashed red;
   border-radius: 100%;
   /* border-top: 0;
@@ -254,8 +254,7 @@ button:hover {
  */
   position: absolute;
   left: 0vw;
-  transform: translateX(5vw);
-  transform-origin: center;
+  transform: translateX(1.5vw);
   
 }
 .mars-orbit {
