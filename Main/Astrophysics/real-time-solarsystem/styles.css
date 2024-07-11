@@ -40,6 +40,7 @@ body {
   flex-direction: column;
 }
 
+
 .date1 {
   display: flex;
   flex-direction: row;
@@ -76,13 +77,54 @@ button:hover {
   cursor: url("/Main/Assets/images/cursor2.png"), auto;
 }
 
-.zoomslider {
-  position: absolute;
-  height: 30vh;
-  top: 35vh;
-  left: 98vw;
-  z-index: 100;
+.glassContainer2{
+    width: 60vw;
+    height: 31vh;
+    top: 34.5vh;
+    left: 97.5vw;
+    border: 0px solid #ddd !important;
+    z-index: 100;
+    position: absolute;
+    border-radius: 1.5vw;
+    backdrop-filter: blur(0.2vw);
+    padding: 2vh !important;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
 }
+
+.zoomslider {
+  height: 30vh;
+  z-index: 101;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+#zoom-slider {
+    -webkit-appearance: none;
+    border-radius: 1vw;
+    background: #ddd;
+    outline: none;
+    opacity: 1;
+    transition: opacity 0.2s;
+    z-index: 10;
+    width: 0.5vw;
+  }
+
+  #zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    cursor: pointer;
+    border-radius: 100%;
+    z-index: 102;
+  }
+
+
 
 #date-slider {
   -webkit-appearance: none;
@@ -96,9 +138,6 @@ button:hover {
   z-index: 10;
 }
 
-#date-slider:hover {
-  opacity: 1;
-}
 
 #date-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
