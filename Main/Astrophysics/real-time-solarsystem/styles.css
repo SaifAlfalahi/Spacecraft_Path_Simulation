@@ -5,6 +5,7 @@ body {
   cursor: url("/Main/Assets/images/cursor.png"), auto;
 }
 .containsVid {
+  background-color: black;
   background-size: cover;
   background-repeat: repeat;
   justify-content: start;
@@ -17,6 +18,8 @@ body {
 
 #background {
   z-index: 0;
+  margin-top: -16vh;
+  height: 126vh;
 }
 
 .glassContainer {
@@ -211,7 +214,6 @@ button:hover {
 .sun {
   width: 80px;
   height: 80px;
-  background: url("./images/sun.png") no-repeat center center;
   background-size: cover;
   border-radius: 50%;
   position: absolute;
@@ -242,13 +244,17 @@ button:hover {
   animation-duration: 10s;
 }
 .transfer-orbit {
-  width: 256px; /* Horizontal diameter */
+  width: 253px; /* Horizontal diameter */
   height: 274px; /* Vertical diameter */
-  border: 1px solid red;
-  border-radius: 100%;
+  border: 3px solid red;
+  border-radius: 0px 274px 274px 0px;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-bottom: 0 !important;
   position: absolute;
   left: 0.2px;
   transform-origin: center;
+  
 }
 .mars-orbit {
   width: 300px;
@@ -293,17 +299,16 @@ button:hover {
   transition: opacity 0.5s ease-in-out !important;
 }
 
-.planet:hover {
-  transform: scale(1.5);
-}
+
 
 .mercury {
-  background: url("./images/mercury.png") no-repeat center center;
   width: 15px;
   height: 15px;
   margin-left: -7.5px;
   margin-top: -82.5px;
 }
+
+
 .venus {
   background: url("./images/venus.png") no-repeat center center;
   width: 20px;
@@ -312,7 +317,7 @@ button:hover {
   margin-top: -110px;
 }
 .earth {
-  transform: rotate(270deg);
+  transform: rotate(0deg);
   width: 25px;
   height: 25px;
   margin-left: -12.5px;
@@ -328,7 +333,7 @@ button:hover {
   border-radius: 100%;
 }
 .future_mars {
-  border: dashed yellow;
+  border:0.5px dashed yellow;
   background: none;
   width: 20px;
   height: 20px;
@@ -336,7 +341,6 @@ button:hover {
   margin-top: -160px;
 }
 .jupiter {
-  background: url("./images/jupiter.png") no-repeat center center;
   width: 35px;
   height: 35px;
   margin-left: -17.5px;
@@ -362,15 +366,6 @@ button:hover {
   height: 25px;
   margin-left: -12.5px;
   margin-top: -360px;
-}
-
-@keyframes orbit {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .controls {

@@ -14,37 +14,62 @@
 <body>
 
     <div class="containsVid">
-        <video id="background" autoplay muted loop>
-            <source src="starsbg.mp4" type="video/mp4">
+        <video id="background" autoplay muted loop style="width: 100vw;">
+            <source src="MAIN.mp4" type="video/mp4">
         </video>
         <div class="solar-system">
             <div class="sun"></div>
             <div class="orbit mercury-orbit">
-                <div class="planet mercury"></div>
+                <div class="planet mercury">
+                    <video class="planetvid" id="" autoplay muted loop
+                        style=" width: 15px; height: 15px; border-radius: 100%;">
+                        <source src="Mercury.mp4" type="video/mp4">
+                </div>
+
             </div>
             <div class="orbit venus-orbit">
-                <div class="planet venus"></div>
+                <div class="planet venus"><video class="planetvid" id="" autoplay muted loop
+                        style=" width: 20px; height: 20px; border-radius: 100%;">
+                        <source src="venus.mp4" type="video/mp4">
+                </div>
             </div>
             <div class="orbit earth-orbit">
-                <div class="planet earth"><video class="planetvid" id="earthvid" autoplay muted loop
+
+                <div class="planet earth"><video class="planetvid" id="" autoplay muted loop
                         style=" width: 25px; height: 25px; border-radius: 100%;">
                         <source src="../earthrotate.mp4" type="video/mp4">
-                    </video></div>
+
+                    </video>
+                    
+                </div>
+                <div class="transfer-orbit"></div>
             </div>
             <div class="orbit mars-orbit">
-                <div class="planet mars"><video class="planetvid" id="earthvid" autoplay muted loop
+                <div class="planet mars"><video class="planetvid" id="" autoplay muted loop
                         style=" width: 20px; height: 20px; border-radius: 100%;">
                         <source src="../marsrotate.mp4" type="video/mp4">
+
+
                     </video></div>
             </div>
+            <div class="orbit future_mars-orbit">
+                <div class="planet future_mars"></div>
+
+            </div>
             <div class="orbit jupiter-orbit">
-                <div class="planet jupiter"></div>
+                <div class="planet jupiter"><video class="planetvid" id="" autoplay muted loop
+                        style=" width: 35px; height: 35px; border-radius: 100%;">
+                        <source src="jupiterrotate.mp4" type="video/mp4">
+                </div>
             </div>
             <div class="orbit saturn-orbit">
-                <div class="planet saturn"></div>
+                <div class="planet saturn">
+
+                </div>
             </div>
             <div class="orbit uranus-orbit">
                 <div class="planet uranus"></div>
+
             </div>
             <div class="orbit neptune-orbit">
                 <div class="planet neptune"></div>

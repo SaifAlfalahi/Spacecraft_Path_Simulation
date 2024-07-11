@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     Venus: { period: 224.7, initialAngle: 315 },
     Earth: { period: 365.25, initialAngle: 160 },
     Mars: { period: 687, initialAngle: 70 },
-    Future_Mars: { period: 687, initialAngle: 310 },
+    Future_Mars: { period: 687, initialAngle: 297 },
     Jupiter: { period: 4331, initialAngle: 22 },
     Saturn: { period: 10747, initialAngle: 100 },
     Uranus: { period: 30589, initialAngle: 35 },
@@ -40,9 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
-  for(let i=0 ; i < planetvid.length ; i++){
-    planetvid[i].playbackRate = 5; 
-  }
+  
 
   function playPauseAnimation() {
     if (isPlaying) {
@@ -62,8 +60,10 @@ document.addEventListener("DOMContentLoaded", function () {
           .padStart(2, "0")}-${currentDate.getFullYear()}`;
         updatePlanetPositions(currentDate);
         for(let i=0 ; i < planetvid.length ; i++){
-    planetvid[i].playbackRate = 5; 
-  }
+
+            planetvid[i].playbackRate = 1; 
+          }
+
       }, 100);
       playPauseBtn.innerHTML = "<img src='images/pause.png' alt='pause'>";
     }
