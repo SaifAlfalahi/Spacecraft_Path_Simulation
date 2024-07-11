@@ -244,15 +244,17 @@ button:hover {
   animation-duration: 10s;
 }
 .transfer-orbit {
-  width: 253px; /* Horizontal diameter */
-  height: 274px; /* Vertical diameter */
-  border: 3px solid red;
-  border-radius: 0px 274px 274px 0px;
-  border-top: 0 !important;
-  border-left: 0 !important;
-  border-bottom: 0 !important;
+  width: 20vw; /* Horizontal diameter */
+  height: 28.3vh; /* Vertical diameter */
+  border: 3px dashed red;
+  border-radius: 100%;
+  /* border-top: 0;
+  border-bottom: 0;
+  border-right: 0;
+ */
   position: absolute;
-  left: 0.2px;
+  left: 0vw;
+  transform: translateX(5vw);
   transform-origin: center;
   
 }
