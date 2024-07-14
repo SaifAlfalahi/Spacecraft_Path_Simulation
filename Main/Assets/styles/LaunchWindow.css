@@ -595,7 +595,7 @@ div.backBtn:hover span.bLine {
 }
 .custom-popover {
   position: absolute;
-  background: url('Assets/images/spaceBG.jpg');
+  background: url('../images/spaceBG.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
