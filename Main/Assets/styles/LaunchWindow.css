@@ -1,0 +1,575 @@
+body {
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+  cursor: url("Assets/images/cursor.png"), auto;
+}
+.containsVid {
+  background-color: black;
+  background-size: cover;
+  background-repeat: repeat;
+  justify-content: start;
+  margin-top: 0vh;
+  align-items: start;
+  z-index: 1;
+  display: flex;
+  position: fixed;
+}
+
+#background {
+  z-index: 0;
+  margin-top: -16vh;
+  height: 126vh;
+}
+
+.glassContainer {
+  width: 60vw;
+  height: 50vh;
+  top: 90vh;
+  left: 20vw;
+  border: 0px solid #ddd !important;
+  z-index: 1;
+  position: absolute;
+  border-radius: 2vw;
+  backdrop-filter: blur(0.2vw);
+  padding: 4vh !important;
+  padding-top: 2vh !important;
+  font-size: 1.5em;
+  gap: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.date1 {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
+.gc {
+  transition: 0.2s ease-in-out;
+  opacity: 1;
+  overflow: hidden;
+  box-shadow: 0 0 1em 0.2em #b1b1b1;
+  transition: 0.2s ease-in-out;
+  z-index: 1000;
+}
+
+.gc:hover {
+  box-shadow: 0 0 1em 0.5em #ffffff;
+}
+
+.slidercontrols {
+  width: 100%;
+}
+
+#playPauseBtn {
+  background: transparent;
+  border: none;
+}
+
+#playPauseBtn img {
+  width: 1.5vw;
+  background: transparent;
+}
+
+button:hover {
+  cursor: url("images/cursor2.png"), auto;
+}
+
+.glassContainer2{
+    width: 60vw;
+    height: 31vh;
+    top: 34.5vh;
+    left: 97.5vw;
+    border: 0px solid #ddd !important;
+    z-index: 100;
+    position: absolute;
+    border-radius: 1.5vw;
+    backdrop-filter: blur(0.2vw);
+    padding: 2vh !important;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.zoomslider {
+  height: 30vh;
+  z-index: 101;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+#zoom-slider {
+    -webkit-appearance: none;
+    border-radius: 1vw;
+    background: #ddd;
+    outline: none;
+    opacity: 1;
+    transition: opacity 0.2s;
+    z-index: 10;
+    width: 0.5vw;
+  }
+
+  #zoom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: white;
+    cursor: pointer;
+    border-radius: 100%;
+    z-index: 102;
+  }
+
+
+
+#date-slider {
+ width: 100%;
+}
+
+
+
+#selector {
+  height: 104px;
+  width: 48px;
+  position: absolute;
+  top: 0px;
+  margin-left: 48px;
+}
+
+.selectBtn {
+  width: 25px;
+  height: 25px;
+  background-image: url("Assets/images/timeimg.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  background-color: #ddd;
+  z-index: 5;
+  position: absolute;
+  top: 57px;
+}
+
+#selectValue {
+  width: 48px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  background: #ffffff;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#selectValue::after {
+  content: "";
+  border-top: 17px solid #ffffff;
+  border-left: 24px solid #000;
+  border-right: 24px solid #000;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+}
+
+.solar-system {
+  position: absolute;
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7vh;
+  z-index: 19;
+}
+
+.sun {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px solid gray;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: none;
+}
+
+.mercury-orbit {
+  width: 150px;
+  height:150px;
+  animation-duration: 2.41096s;
+}
+.venus-orbit {
+  width: 200px;
+  height: 200px;
+  animation-duration: 6.16438s;
+}
+.earth-orbit {
+  width: 250px;
+  height: 250px;
+  animation-duration: 10s;
+}
+.transfer-orbit {
+  width: 10vw; /* Horizontal diameter */
+  height: 14vw; /* Vertical diameter */
+  border: 3px dashed red;
+  border-radius: 100%;
+  /* border-top: 0;
+  border-bottom: 0;
+  border-right: 0;
+ */
+  position: absolute;
+  left: 0vw;
+  transform: translateX(1.5vw);
+  
+}
+.mars-orbit {
+  width: 300px;
+  height: 300px;
+  animation-duration: 18.8219s;
+}
+.jupiter-orbit {
+  width: 400px;
+  height: 400px;
+  animation-duration: 118.7123s;
+}
+.saturn-orbit {
+  width: 500px;
+  height: 500px;
+  animation-duration: 294.76712s;
+}
+.uranus-orbit {
+  width: 600px;
+  height: 600px;
+  animation-duration: 840.73973s;
+}
+.neptune-orbit {
+  width: 700px;
+  height: 700px;
+  animation-duration: 1649.041s;
+}
+
+.planet {
+  width: 15px;
+  height: 15px;
+  background: gray;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 19;
+  transform-origin: center;
+  background-size: cover !important;
+}
+.planet,
+.orbit {
+  transition: opacity 0.5s ease-in-out !important;
+}
+
+
+
+.mercury {
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+  margin-top: -82.5px;
+}
+
+
+.venus {
+  background: url("Assets/images/venus.png") no-repeat center center;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -110px;
+}
+.earth {
+  transform: rotate(0deg);
+  width: 25px;
+  height: 25px;
+  margin-left: -12.5px;
+  margin-top: -137.5px;
+  border-radius: 100%;
+}
+.mars {
+  background: url("Assets/images/mars.png") no-repeat center center;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -160px;
+  border-radius: 100%;
+}
+.future_mars {
+  border:0.5px dashed yellow;
+  background: none;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -160px;
+}
+.jupiter {
+  width: 35px;
+  height: 35px;
+  margin-left: -17.5px;
+  margin-top: -217.5px;
+}
+.saturn {
+  background: url("Assets/images/saturn.png") no-repeat center center;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -265px;
+}
+.uranus {
+  background: url("Assets/images/uranus.png") no-repeat center center;
+  width: 25px;
+  height: 25px;
+  margin-left: -12.5px;
+  margin-top: -312.5px;
+}
+.neptune {
+  background: url("Assets/images/neptune.png") no-repeat center center;
+  width: 25px;
+  height: 25px;
+  margin-left: -12.5px;
+  margin-top: -360px;
+}
+
+.controls {
+  display: block;
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  padding: 10px;
+  color: black;
+  width: 200px;
+  font-size: 1.5em;
+  z-index: 100;
+}
+
+#dateDisplay {
+  color: white;
+  font: 1.3px;
+}
+
+.controls input {
+  height: 25px;
+  font: 1.2em;
+}
+
+.controls button {
+  height: 25px;
+}
+
+#start-date {
+  position: fixed;
+  opacity: 0;
+}
+
+div.backBtn {
+  width: 6vw;
+  left: 2vw;
+  top: 4vh;
+  background-color: #f4f4f4;
+  color: white;
+  transition: all 0.4s ease;
+  position: fixed;
+  cursor: pointer;
+  z-index: 100;
+}
+
+span.line {
+  bottom: auto;
+  right: auto;
+  top: auto;
+  left: auto;
+  background-color: #b3b3b3;
+  border-radius: 10px;
+  width: 100%;
+  left: 0px;
+  height: 5px;
+  display: block;
+  position: absolute;
+  transition: width 0.2s ease 0.1s, left 0.2s ease, transform 0.2s ease 0.3s, background-color 0.2s ease;
+}
+
+span.tLine {
+  top: 0px;
+}
+
+span.mLine {
+  top: 13px;
+  opacity: 0;
+}
+
+span.bLine {
+  top: 31px;
+}
+
+.label {
+  position: absolute;
+  left: 0px;
+  top: 5px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.4s ease;
+  margin-bottom: 2px;
+  font-size: 2vh;
+}
+
+div.backBtn:hover span.label {
+  left: 25px
+}
+
+div.backBtn:hover span.line {
+  left: -10px;
+  height: 5px;
+  background-color: #F76060;
+}
+
+div.backBtn:hover span.tLine {
+  width: 25px;
+  transform: rotate(-45deg);
+  left: -15px;
+  top: 6px;
+}
+
+div.backBtn:hover span.mLine {
+  opacity: 1;
+  width: 30px;
+}
+
+div.backBtn:hover span.bLine {
+  width: 25px;
+  transform: rotate(45deg);
+  left: -15px;
+  top: 20px;
+}
+
+
+/* Slider style */
+
+
+.glow {
+  --c: rgb(255, 255, 255);
+  --c: hsl(0, 100%, 50%);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 15rem;
+  position: relative;
+}
+
+.glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc((var(--val) ) * 1%);
+  min-width: 0.5em;
+  height: 100%;
+  background: var(--c);
+  box-shadow: 
+    0 0 0.2em 0 hsl(0 0% 0%) inset, 
+    -0.1em 0.1em 0.1em -0.1em hsl(0 0% 100% / 0.5),
+    0 0 calc(1em + 0.001em * var(--val)) calc(0.1em + 0.00025em * var(--val)) var(--c)
+    ;
+  border-radius: 1em 0 0 1em;
+}
+
+/***** Track Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+.glow::-webkit-slider-runnable-track {
+  box-shadow: 
+    0 0 0.2em 0 hsl(0 0% 0%) inset, 
+    -0.1em 0.1em 0.1em -0.1em hsl(0 0% 100% / 0.5);
+  background: 
+    linear-gradient(to bottom right, #0001, #0000),
+    #343133;
+  border-radius: 1em;
+  height: 1em;
+}
+
+/******** Firefox ********/
+.glow::-moz-range-track {
+  box-shadow: 0 0 2px 0 hsl(0 0% 0%) inset, -1px 1px 1px -1px hsl(0 0% 100% / 0.5);
+  background: 
+    linear-gradient(var(--c) 0 0) 0 0 / calc(var(--val) * 1%) 100% no-repeat,
+    linear-gradient(to bottom right, #0001, #0000),
+    #343133;
+  border-radius: 1em;
+  height: 1em;
+}
+
+
+/***** Thumb Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+.glow::-webkit-slider-thumb {
+  --d: var(--c);
+  --d: rgb(from var(--c) r g b / calc(0.35 * var(--val) * 1%));
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  background-color: #5cd5eb;
+  transform: translateY(calc(-50% + 0.5em));
+  width: 3em;
+  aspect-ratio: 1;
+  background: red;
+  border-radius: 50%;
+  background: 
+    radial-gradient(farthest-side, #0000 22.5%, var(--d) 0, #0000 calc(var(--val) * 0.75%)) 50% 50% / 100% 100% no-repeat,
+    radial-gradient(#0000  15%, #343133 16%, #545153 20%),
+    repeating-linear-gradient(#0000 0 10%, #0002 0 20%) 50% 50% / 25% 25% no-repeat,
+    repeating-linear-gradient(90deg, #0000 0 10%, #0002 0 20%) 50% 50% / 25% 25% no-repeat,
+    radial-gradient(var(--c) 17%, #0000 0),
+    #545153;
+  box-shadow:
+    inset -0.15em -0.15em 0.2em #0008,
+    inset 0.15em 0.15em 0.2em #ffffff22,
+    inset calc(var(--val) * 1em / 500) 0em calc(var(--val) * 1em / 500) calc(var(--val) * -1em / 700) var(--c),
+    0.25em 0.25em 0.5em #0006,
+    calc(0.0125em * var(--val)) calc(0.005em * var(--val)) calc(0.02em * var(--val)) calc(-0.01em * var(--val)) #000a;
+  border-radius: 50%;
+  transition: background 0.2s;
+    
+}
+
+/***** Firefox *****/
+.glow::-moz-range-thumb {
+/*   --d: var(--c);
+  --d: rgb(from var(--c) r g b / calc(0.35 * var(--val) * 1%)); */
+  border: none; /*Removes extra border that FF applies*/
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  background-color: #5cd5eb;
+  width: 4em;
+  height: 4em;
+  aspect-ratio: 1;
+  background: red;
+  border-radius: 50%;
+  background: 
+/*     radial-gradient(farthest-side, #0000 22.5%, var(--d) 0, #0000 calc(var(--val) * 0.75%)) 50% 50% / 100% 100% no-repeat, */
+    radial-gradient(#0000  15%, #343133 16%, #545153 20%),
+    repeating-linear-gradient(#0000 0 10%, #0002 0 20%) 50% 50% / 25% 25% no-repeat,
+    repeating-linear-gradient(90deg, #0000 0 10%, #0002 0 20%) 50% 50% / 25% 25% no-repeat,
+    radial-gradient(var(--c) 17%, #0000 0),
+    #545153;
+  box-shadow:
+    inset -0.15em -0.15em 0.2em #0008,
+    inset 0.15em 0.15em 0.2em #ffffff22,
+    inset calc(var(--val) * 1em / 500) 0em calc(var(--val) * 1em / 500) calc(var(--val) * -1em / 700) var(--c),
+    0.25em 0.25em 0.5em #0006,
+    calc(0.015em * var(--val)) calc(0.005em * var(--val)) calc(0.02em * var(--val)) calc(-0.01em * var(--val)) #0008;
+  border-radius: 50%;
+}
+

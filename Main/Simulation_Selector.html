@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
     <style>
         @import url("https://fonts.googleapis.com/css?family=Raleway");
 
@@ -343,22 +343,125 @@
         #hoverText {
             opacity: 1;
         }
+
+        div.backBtn {
+            width: 6vw;
+            left: 2vw;
+            top: 4vh;
+            background-color: #f4f4f4;
+            transition: all 0.4s ease;
+            position: fixed;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        span.line {
+            bottom: auto;
+            right: auto;
+            top: auto;
+            left: auto;
+            background-color: #b3b3b3;
+            border-radius: 10px;
+            width: 100%;
+            left: 0px;
+            height: 5px;
+            display: block;
+            position: absolute;
+            transition: width 0.2s ease 0.1s, left 0.2s ease, transform 0.2s ease 0.3s, background-color 0.2s ease;
+        }
+
+        span.tLine {
+            top: 0px;
+        }
+
+        span.mLine {
+            top: 13px;
+            opacity: 0;
+        }
+
+        span.bLine {
+            top: 31px;
+        }
+
+        .label {
+            position: absolute;
+            left: 0px;
+            top: 5px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.4s ease;
+            margin-bottom: 2px;
+            font-size: 2vh;
+        }
+
+        div.backBtn:hover span.label {
+            left: 25px
+        }
+
+        div.backBtn:hover span.line {
+            left: -10px;
+            height: 5px;
+            background-color: #F76060;
+        }
+
+        div.backBtn:hover span.tLine {
+            width: 25px;
+            transform: rotate(-45deg);
+            left: -15px;
+            top: 6px;
+        }
+
+        div.backBtn:hover span.mLine {
+            opacity: 1;
+            width: 30px;
+        }
+
+        div.backBtn:hover span.bLine {
+            width: 25px;
+            transform: rotate(45deg);
+            left: -15px;
+            top: 20px;
+        }
     </style>
 </head>
 
 <body>
     <div class="containsVid">
+        <div class="backBtn">
+            <span class="line tLine"></span>
+            <span class="line mLine"></span>
+            <span class="label">Back</span>
+            <span class="line bLine"></span>
+        </div>
         <div class="d-flex gap-2 glassContainer gc flex-column justify-content-between">
             <div>
                 <p class="titleFont">Select Simulations</p>
             </div>
-            <div class="center-text" id="hoverText">Hover over a button to see details</div>
-            <div class="center-text" id="hoverText1">Calculate's the launch window and the Hohmann transfer</div>
-            <div class="center-text" id="hoverText2">Information about simulation 2</div>
-            <div class="center-text" id="hoverText3">Information about simulation 3</div>
+            <div class="center-text" id="hoverText">Explore the journey to Mars through our three simulations!</div>
+            <div class="center-text" id="hoverText1">
+                <p style="font-size: 2vw;">Calculating the launch window: </p>
+                <p style="font-size: 1.3vw; width: 50vw !important;">
+                    Discover the launch window for your Mars mission! <br>
+                    Input the starting date and see the precise positions in our Solar System.
+                </p>
+            </div>
+            <div class="center-text" id="hoverText2">
+                <p style="font-size: 2vw;">Earth to hohman transfer</p>
+                <p style="font-size: 1.3vw; width: 50vw !important;">
+                    Experience the journey from Earth to hohman transfer! <br>
+
+                </p>
+            </div>
+            <div class="center-text" id="hoverText3">
+                <p style="font-size: 2vw;">Calculating the launch window: </p>
+                <p style="font-size: 1.3vw; width: 50vw !important;">
+                    Discover the launch window for your Mars mission! <br>
+                    Input the starting date and see the precise positions in our Solar System.
+                </p>
+            </div>
 
             <div class="d-flex justify-content-between gap-2 w-100">
-                <div><button id="ClickedButton0" style="--clr:#0FF0FC"><span>Solar System</span><i></i></button></div>
+                <div><button id="ClickedButton0" style="--clr:#0FF0FC"><span>Launch window</span><i></i></button></div>
                 <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Real time</span><i></i></button></div>
                 <div><button id="ClickedButton2" style="--clr:#8A2BE2"><span>Simulation 3</span><i></i></button></div>
             </div>
@@ -498,8 +601,8 @@
                                 $('#modalTimer').text(timer);
                                 if (timer <= 0) {
                                     clearInterval(interval);
-                                      $('#timerModal').modal('hide');
-                                      window.location.href = 'Astrophysics/solarsystem.html';
+                                    $('#timerModal').modal('hide');
+                                    window.location.href = 'LaunchWindow.html';
                                 }
                             }, 1000);
                         });
@@ -520,8 +623,8 @@
                                 $('#modalTimer').text(timer);
                                 if (timer <= 0) {
                                     clearInterval(interval);
-                                      $('#timerModal').modal('hide');
-                                      window.location.href = 'Astrophysics/real-time-solarsystem/real-time.html';
+                                    $('#timerModal').modal('hide');
+                                    window.location.href = 'Astrophysics/real-time-solarsystem/real-time.html';
                                 }
                             }, 1000);
                         });
