@@ -1,6 +1,6 @@
 
 .star {
-    background-image: url('/Main/Assets/images/sparkler.png');
+    background-image: url('/Assets/images/sparkler.png');
     background-size: contain;
     position: absolute;
     z-index: 420;

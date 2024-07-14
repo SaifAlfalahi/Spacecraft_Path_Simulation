@@ -1,9 +1,14 @@
 body {
   margin: 0;
   background: transparent;
+  color: white;
   overflow: hidden;
-  cursor: url("Assets/images/cursor.png"), auto;
+  cursor: url("../images/cursor.png"), auto;
+  font-family: "Zen Dots", sans-serif !important;
+
 }
+
+
 .containsVid {
   background-color: black;
   background-size: cover;
@@ -23,9 +28,9 @@ body {
 }
 
 .glassContainer {
-  width: 60vw;
+  width: 65vw;
   height: 50vh;
-  top: 90vh;
+  top: 93vh;
   left: 20vw;
   border: 0px solid #ddd !important;
   z-index: 1;
@@ -37,27 +42,19 @@ body {
   font-size: 1.5em;
   gap: 1vh;
   display: flex;
-  flex-direction: column;
+  
 }
 
 
-.date1 {
-  display: flex;
-  flex-direction: row;
-  gap: 1vw;
-}
 .gc {
   transition: 0.2s ease-in-out;
   opacity: 1;
   overflow: hidden;
-  box-shadow: 0 0 1em 0.2em #b1b1b1;
+  box-shadow: 0 0 1em 0.2em #ff0000;
   transition: 0.2s ease-in-out;
   z-index: 1000;
 }
 
-.gc:hover {
-  box-shadow: 0 0 1em 0.5em #ffffff;
-}
 
 .slidercontrols {
   width: 100%;
@@ -69,18 +66,18 @@ body {
 }
 
 #playPauseBtn img {
-  width: 1.5vw;
+  width: 1.2vw;
   background: transparent;
 }
 
-button:hover {
-  cursor: url("images/cursor2.png"), auto;
+button:hover, a:hover, input:hover {
+  cursor: url("../images/cursor2.png"), auto;
 }
 
 .glassContainer2{
     width: 60vw;
-    height: 31vh;
-    top: 34.5vh;
+    height: 34vh;
+    top: 25vh;
     left: 97.5vw;
     border: 0px solid #ddd !important;
     z-index: 100;
@@ -119,7 +116,6 @@ button:hover {
     width: 20px;
     height: 20px;
     background: white;
-    cursor: pointer;
     border-radius: 100%;
     z-index: 102;
   }
@@ -220,7 +216,7 @@ button:hover {
 }
 .transfer-orbit {
   width: 10vw; /* Horizontal diameter */
-  height: 14vw; /* Vertical diameter */
+  height: 14.3vw; /* Vertical diameter */
   border: 3px dashed red;
   border-radius: 100%;
   /* border-top: 0;
@@ -286,7 +282,6 @@ button:hover {
 
 
 .venus {
-  background: url("Assets/images/venus.png") no-repeat center center;
   width: 20px;
   height: 20px;
   margin-left: -10px;
@@ -301,7 +296,6 @@ button:hover {
   border-radius: 100%;
 }
 .mars {
-  background: url("Assets/images/mars.png") no-repeat center center;
   width: 20px;
   height: 20px;
   margin-left: -10px;
@@ -311,33 +305,34 @@ button:hover {
 .future_mars {
   border:0.5px dashed yellow;
   background: none;
+  border-radius: 100%;
   width: 20px;
   height: 20px;
   margin-left: -10px;
   margin-top: -160px;
 }
 .jupiter {
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   margin-left: -17.5px;
   margin-top: -217.5px;
 }
 .saturn {
-  background: url("Assets/images/saturn.png") no-repeat center center;
+  background: url("../images/saturn.png") no-repeat center center;
   width: 30px;
   height: 30px;
   margin-left: -15px;
   margin-top: -265px;
 }
 .uranus {
-  background: url("Assets/images/uranus.png") no-repeat center center;
+  background: url("../images/uranus.png") no-repeat center center;
   width: 25px;
   height: 25px;
   margin-left: -12.5px;
   margin-top: -312.5px;
 }
 .neptune {
-  background: url("Assets/images/neptune.png") no-repeat center center;
+  background: url("../images/neptune.png") no-repeat center center;
   width: 25px;
   height: 25px;
   margin-left: -12.5px;
@@ -383,7 +378,6 @@ div.backBtn {
   color: white;
   transition: all 0.4s ease;
   position: fixed;
-  cursor: pointer;
   z-index: 100;
 }
 
@@ -455,7 +449,35 @@ div.backBtn:hover span.bLine {
   top: 20px;
 }
 
+.glassContainer3 {
+  width: 25vw;
+  height: 40vh;
+  border: 0.2px solid #ddd !important;
+  z-index: 100;
+  position: fixed;
+  border-radius: 1vw;
+  top: 25vh;
+  left: -2vw;
+  backdrop-filter: blur(0.3vw);
+  padding: 2vw;
+  padding-right: 4vh;
+  padding-left: 6vh;
+  padding-top: 1vh;
 
+  cursor: url('../images/cursor.png'), auto;
+  transition: 0.3s ease;
+
+}
+
+.logo2 {
+  color: white;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff0000, 0 0 0.5em #ff5e00, 0 0 0.1em #721818, 0 8px 3px #000;
+}
+
+.logo {
+  color: white;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #9b9b9b, 0 0 0.5em #313131, 0 0 0.1em #721818, 0 8px 3px #000;
+}
 /* Slider style */
 
 
@@ -466,7 +488,6 @@ div.backBtn:hover span.bLine {
   -moz-appearance: none;
   appearance: none;
   background: transparent;
-  cursor: pointer;
   width: 15rem;
   position: relative;
 }
@@ -522,7 +543,7 @@ div.backBtn:hover span.bLine {
   appearance: none;
   background-color: #5cd5eb;
   transform: translateY(calc(-50% + 0.5em));
-  width: 3em;
+  width: 2.4vw;
   aspect-ratio: 1;
   background: red;
   border-radius: 50%;
@@ -572,4 +593,83 @@ div.backBtn:hover span.bLine {
     calc(0.015em * var(--val)) calc(0.005em * var(--val)) calc(0.02em * var(--val)) calc(-0.01em * var(--val)) #0008;
   border-radius: 50%;
 }
+.custom-popover {
+  position: absolute;
+  background: url('/Assets/images/spaceBG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 1vw;
+  padding: 10px;
+  z-index: 9999;
+  width: 24vw;
+  height: 25vh;
+  box-shadow: 0 0 1em 0.2em rgba(204, 204, 204, 0.712) !important ;
+}
 
+.custom-popover .popover-arrow {
+  position: absolute;
+  width: 0;
+  margin-left: -7px;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid rgb(255, 255, 255);
+  
+  font-size: 1vw;
+}
+
+.custom-popover .popover-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: white solid 1px; 
+
+}
+
+.custom-popover .popover-body {
+  color: white;
+}
+
+.custom-popover .btn {
+ 
+}
+
+
+#next-btn {
+  text-decoration: none;
+  height: 4vh;
+  transition: 0.3s ease-in;
+  width: 5vw;
+  background: transparent;
+  color: white;
+  font-size: 0.8vw;
+  text-transform: uppercase;
+  border: 1px solid rgb(146, 148, 248);
+  position: absolute;
+  bottom: 2vh;
+  right: 1vw;
+  overflow: hidden;
+}
+
+#next-btn:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+}
+
+#next-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(146, 148, 248, 0.4),
+      transparent);
+  transition: all 650ms;
+}
+
+#next-btn:hover:before {
+  left: 100%;
+}

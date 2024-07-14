@@ -1,6 +1,13 @@
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
+
   const dateSlider = document.getElementById('date-slider');
   const dateDisplay = document.getElementById('dateDisplay');
+  const dateStatus = document.getElementById('Status');
+  const glasses = document.getElementsByClassName('gc');
+  const dateStyle = document.getElementsByClassName('logo2');
 
   // List of accepted launch windows (month is 0-indexed, so October is 9, January is 0)
   const launchWindows = {
@@ -8,20 +15,38 @@ document.addEventListener('DOMContentLoaded', function () {
       2026: [10, 11], // November and December
       2028: [11], // December
       2029: [0], // January
-      2031: [2, 3], // October and November
+      2031: [2, 3], // March and April
   };
 
   function updateSliderColor() {
       const dateText = dateDisplay.innerText;
       const [day, month, year] = dateText.split('-').map(Number);
       const adjustedMonth = month - 1; // Adjust month from 1-indexed to 0-indexed
-
+      
       if (launchWindows[year] && launchWindows[year].includes(adjustedMonth)) {
           dateSlider.style.setProperty('--c', 'rgb(0, 255, 21)');
           dateSlider.style.setProperty('--c', 'hsl(123, 100%, 50%)');
+          dateStatus.textContent = "";
+          for(let i=0 ; i < glasses.length ; i++){
+            glasses[i].style.setProperty('box-shadow', '0 0 1em 0.2em rgb(0, 255, 21)'); 
+          }
+          for(let i=0 ; i < dateStyle.length ; i++){
+            dateStyle[i].style.setProperty('text-shadow', '0 -40px 100px, 0 0 2px, 0 0 1em #15ff00, 0 0 0.5em #1bbb63, 0 0 0.1em #01860c, 0 8px 3px #044e14');
+          }
+
+
       } else {
           dateSlider.style.setProperty('--c', 'rgb(255, 0, 0)');
           dateSlider.style.setProperty('--c', 'hsl(0, 100%, 50%)');
+          dateStatus.textContent = " NOT ";
+          for(let i=0 ; i < glasses.length ; i++){
+            glasses[i].style.setProperty('box-shadow', '0 0 1em 0.2em rgb(255, 0, 0)'); 
+          }
+          for(let i=0 ; i < dateStyle.length ; i++){
+            dateStyle[i].style.setProperty('text-shadow', '0 -40px 100px, 0 0 2px, 0 0 1em #ff0000, 0 0 0.5em #ff5e00, 0 0 0.1em #860101, 0 8px 3px #000'); 
+
+          }
+
       }
   }
 
@@ -33,6 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Configure the observer to watch for changes in the text content of the dateDisplay element
   observer.observe(dateDisplay, { childList: true, characterData: true, subtree: true });
+  // Handle slider input to update --val CSS variable
+  dateSlider.addEventListener('input', function () {
+    this.style.setProperty('--val', this.value);
+    updateSliderColor(); // Call this to update the track color based on the date
+  });
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -41,8 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const dateDisplay = document.getElementById("dateDisplay");
   const dateSlider = document.getElementById("date-slider");
   const planetvid = document.getElementsByClassName("planetvid");
-
-
 
   let animationInterval;
   let isPlaying = true; // Start with the animation playing
@@ -82,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function playPauseAnimation() {
     if (isPlaying) {
       clearInterval(animationInterval);
-      playPauseBtn.innerHTML = "<img src='Assets/images/play.png' alt='play'>";
+      playPauseBtn.innerHTML = "<img  style='margin-top:-1.0vh' src='Assets/images/play.png' alt='play'>";
       for(let i=0 ; i < planetvid.length ; i++){
         planetvid[i].playbackRate = 0; 
       }
@@ -96,28 +124,36 @@ document.addEventListener("DOMContentLoaded", function () {
           .toString()
           .padStart(2, "0")}-${currentDate.getFullYear()}`;
         updatePlanetPositions(currentDate);
+        updateSliderValue();
         for(let i=0 ; i < planetvid.length ; i++){
-
-            planetvid[i].playbackRate = 1; 
-          }
-
+          planetvid[i].playbackRate = 1; 
+        }
       }, 100);
-      playPauseBtn.innerHTML = "<img src='Assets/images/pause.png' alt='pause'>";
+      playPauseBtn.innerHTML = "<img  style='margin-top:-1.0vh' src='Assets/images/pause.png' alt='pause'>";
     }
     isPlaying = !isPlaying;
+  }
+
+  function updateSliderValue() {
+    dateSlider.style.setProperty('--val', dateSlider.value); // Update --val CSS variable
+    const startDate = new Date("2024-07-09");
+    const differenceInMonths = (currentDate.getFullYear() - startDate.getFullYear()) * 12 + (currentDate.getMonth() - startDate.getMonth());
+
+    dateSlider.value = differenceInMonths;
   }
 
   playPauseBtn.addEventListener("click", playPauseAnimation);
 
   dateInput.addEventListener("change", function () {
     currentDate = new Date(this.value);
-    dateDisplay.textContent = `Date: ${currentDate
+    dateDisplay.textContent = `${currentDate
       .getDate()
       .toString()
       .padStart(2, "0")}-${(currentDate.getMonth() + 1)
       .toString()
       .padStart(2, "0")}-${currentDate.getFullYear()}`;
     updatePlanetPositions(currentDate);
+    updateSliderValue();
   });
 
   dateSlider.addEventListener("input", function () {
@@ -144,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .padStart(2, "0")}-${(currentDate.getMonth() + 1)
     .toString()
     .padStart(2, "0")}-${currentDate.getFullYear()}`;
-  playPauseBtn.innerHTML = "<img src='Assets/images/pause.png' alt='pause'>";
+  playPauseBtn.innerHTML = "<img style='margin-top:-1.0vh' src='Assets/images/pause.png' alt='pause'>";
 
   // Initialize positions and start the animation
   updatePlanetPositions(currentDate);
@@ -157,6 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .toString()
       .padStart(2, "0")}-${currentDate.getFullYear()}`;
     updatePlanetPositions(currentDate);
+    updateSliderValue();
   }, 100);
 });
 

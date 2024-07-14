@@ -9,9 +9,15 @@
     <link rel="stylesheet" href="Assets/styles/slider.css">
     <link rel="stylesheet" href="Assets/styles/mouse_stars.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
 
     <div class="containsVid">
         <a href="../Simulation_Selector.html">
@@ -22,6 +28,34 @@
                 <span class="line bLine"></span>
             </div>
         </a>
+
+        <div class="glassContainer3 gc" style="font-size: 1.7vw;">
+            <div class="placeholder w-25 fixed-top" style="left: 20vw; top:3vh;">
+
+            </div>
+            <div class="logo">Current Date: <br> </div>
+            <div class="logo2">
+                <div style="display: flex; gap: 1.3vw; margin-top: 1vh;">
+                    <button class="p-0" id="playPauseBtn"></button>
+
+                    <div id="dateDisplay" style="font-size: 1.5vw;"></div>
+
+
+                </div>
+            </div>
+            <span style="font-size: 0.9vw;  margin-top: 0vh; color: white;">This date is <span id="Status" class="logo2"
+                    style="font-size: 0.9vw;"></span> a launch window </span>
+            <div style="width: 100%; border-bottom: 4px dashed rgb(255, 255, 255); margin-top: 1vw; "></div>
+            <!--
+                Hint:
+                <span style="font-size: 1vw;  margin-top: 1vh;">The dashed circle represents the position of mars after 8 months, which is the duration of the journey from earth to mars  <div class="future_mars"></div></span>
+                -->
+                <span id="Status2" class="logo2"
+                    style="font-size: 1.0vw;"></span>
+
+        </div>
+
+
         <video id="background" autoplay muted loop style="width: 100vw;">
             <source src="Assets/videos/MAIN.mp4" type="video/mp4">
         </video>
@@ -30,7 +64,7 @@
             <div class="orbit mercury-orbit">
                 <div class="planet mercury">
                     <video class="planetvid" id="" autoplay muted loop
-                        style=" width: 15px; height: 15px; border-radius: 100%;">
+                        style=" width: 15px; height: 15px; margin-bottom: 12px; border-radius: 100%;">
                         <source src="Assets/videos/Mercury.mp4" type="video/mp4">
                 </div>
 
@@ -48,7 +82,7 @@
                         <source src="Assets/videos/earthrotate.mp4" type="video/mp4">
 
                     </video>
-                    
+
                 </div>
                 <div class="transfer-orbit"></div>
             </div>
@@ -66,7 +100,7 @@
             </div>
             <div class="orbit jupiter-orbit">
                 <div class="planet jupiter"><video class="planetvid" id="" autoplay muted loop
-                        style=" width: 35px; height: 35px; border-radius: 100%;">
+                        style=" width: 40px; height: 40px; border-radius: 100%;">
                         <source src="Assets/videos/jupiterrotate.mp4" type="video/mp4">
                 </div>
             </div>
@@ -89,25 +123,29 @@
             <input type="date" id="start-date">
         </div>
         <div class="glassContainer gc">
-            <div class="date1">
-                <div id="dateDisplay"></div>
-                <button id="playPauseBtn"></button>
-            </div>
+
             <div class="slidercontrols">
-                <input class="glow" type="range" id="date-slider" min="0" max="100" value="0" style="--val: 0; width: 100%;" oninput="this.style='--val:'+this.value" >
+                <input class="glow" type="range" id="date-slider" min="0" max="100" value="0"
+                    style="--val: 0; width: 100%;">
             </div>
         </div>
         <div class="glassContainer2 gc">
             <div class="zoomslider">
-                <img src="Assets/images/zoom-in.png" alt="zoom-in" style="width: 1.2vw; padding-bottom: 1vh; margin-left: -0.2vw;">
+                <img src="Assets/images/zoom-in.png" alt="zoom-in"
+                    style="width: 1.2vw; padding-bottom: 1vh; margin-left: -0.2vw;">
                 <input type="range" id="zoom-slider" min="10" max="26" value="12"
                     style="height: 100%; writing-mode: vertical-lr; direction: rtl;">
-                <img src="Assets/images/zoom-out.png" alt="zoom-out" style="width: 1.2vw; padding-top: 1vh; margin-left: -0.2vw;">
+                <img src="Assets/images/zoom-out.png" alt="zoom-out"
+                    style="width: 1.2vw; padding-top: 1vh; margin-left: -0.2vw;">
             </div>
         </div>
     </div>
     <script src="Assets/scripts/LaunchWindowScript.js"></script>
     <script src="Assets/scripts/mouse_stars.js"></script>
+    <script src="Assets/scripts/guide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 
 </html>
