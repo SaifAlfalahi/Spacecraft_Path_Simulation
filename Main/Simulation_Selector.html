@@ -90,9 +90,9 @@
             text-decoration: none;
             border: none;
             height: 5vh;
-            width: 14vw;
+            width: 20vw;
             letter-spacing: 0.05vw;
-            font-size: 1.6vw;
+            font-size: 1.3vw;
             transition: 0.2s;
             text-align: center;
             backdrop-filter: blur(100vw);
@@ -105,7 +105,6 @@
         }
 
         button:hover {
-            letter-spacing: 0.2rem;
             color: var(--clr);
             animation: box 3s infinite;
             cursor: url("Assets/images/cursor2.png"), auto;
@@ -441,9 +440,10 @@
         </a>
         <div class="d-flex gap-2 glassContainer gc flex-column justify-content-between">
             <div>
-                <p class="titleFont">Select Simulations</p>
+                <p class="titleFont text-center" style="font-size: 2.7vw;   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #9b9b9b, 0 0 0.5em #313131, 0 0 0.1em #721818, 0 8px 3px #000;
+">Select Simulation</p>
             </div>
-            <div class="center-text" id="hoverText">Explore the journey to Mars through our three simulations!</div>
+            <div class="center-text" id="hoverText">Explore the journey to Mars through our simulations!</div>
             <div class="center-text" id="hoverText1">
                 <p style="font-size: 2vw;">Calculating the launch window: </p>
                 <p style="font-size: 1.3vw; width: 50vw !important;">
@@ -452,24 +452,17 @@
                 </p>
             </div>
             <div class="center-text" id="hoverText2">
-                <p style="font-size: 2vw;">Earth to hohman transfer</p>
+                <p style="font-size: 2vw;">Hohmann transfer orbit calculations</p>
                 <p style="font-size: 1.3vw; width: 50vw !important;">
-                    Experience the journey from Earth to hohman transfer! <br>
-
+                    Experience the journey from Earth to Hohmann transfer orbit and from hohmann orbit to Mars! <br>
+                    Check out the detailed calculations and try out the hohmann transfer simulation to see it in action.
                 </p>
             </div>
-            <div class="center-text" id="hoverText3">
-                <p style="font-size: 2vw;">Calculating the launch window: </p>
-                <p style="font-size: 1.3vw; width: 50vw !important;">
-                    Discover the launch window for your Mars mission! <br>
-                    Input the starting date and see the precise positions in our Solar System.
-                </p>
-            </div>
+          
 
-            <div class="d-flex justify-content-between gap-2 w-100">
+            <div class="d-flex justify-content-evenly gap-2 w-100">
                 <div><button id="ClickedButton0" style="--clr:#0FF0FC"><span>Launch window</span><i></i></button></div>
-                <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Real time</span><i></i></button></div>
-                <div><button id="ClickedButton2" style="--clr:#8A2BE2"><span>Simulation 3</span><i></i></button></div>
+                <div><button id="ClickedButton1" style="--clr:#39FF14"><span>Hohmann Transfer</span><i></i></button></div>
             </div>
         </div>
         <video id="homepagevid" style="width: 100vw;" autoplay muted loop>
@@ -528,7 +521,7 @@
                                     </svg>
                                 </div>
                                 <div class="text-container">
-                                    <p class="saving">Starting Journey<span>.</span><span>.</span><span>.</span></p>
+                                    <p class="saving">Loading Simulation<span>.</span><span>.</span><span>.</span></p>
                                 </div>
                                 <div class="smoke">
                                     <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -556,7 +549,6 @@
             const buttons = [
                 { id: "#ClickedButton0", color: "#0FF0FC", textId: "#hoverText1" },
                 { id: "#ClickedButton1", color: "#39FF14", textId: "#hoverText2" },
-                { id: "#ClickedButton2", color: "#8A2BE2", textId: "#hoverText3" }
             ];
 
             const hoverTextElement = $("#hoverText");
@@ -630,7 +622,7 @@
                                 if (timer <= 0) {
                                     clearInterval(interval);
                                     $('#timerModal').modal('hide');
-                                    window.location.href = 'Astrophysics/real-time-solarsystem/real-time.html';
+                                    window.location.href = 'Hohmann.html';
                                 }
                             }, 1000);
                         });

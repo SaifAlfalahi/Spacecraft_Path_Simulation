@@ -1,0 +1,564 @@
+body {
+  margin: 0;
+  background: transparent;
+  color: white;
+  overflow: hidden;
+  cursor: url("../images/cursor.png"), auto;
+  font-family: "Zen Dots", sans-serif !important;
+}
+
+.containsBg {
+  background-image: url("../images/spaceBG.jpg");
+  background-size: cover;
+  background-repeat: repeat;
+  width: 100vw;
+  height: 100vh;
+}
+
+#background {
+  z-index: 0;
+  margin-top: -16vh;
+  height: 126vh;
+}
+#glassContainer3 {
+  width: 35vw;
+  height: 70vh;
+  border: 0.2px solid #ddd !important;
+  z-index: 100;
+  position: fixed;
+  color: white;
+
+  border-radius: 1vw;
+  top: 15vh;
+  left: -31vw;
+  backdrop-filter: blur(0.3vw);
+  padding: 2vw;
+  padding-right: 1vh;
+  padding-left: 6vh;
+  padding-top: 4vh;
+  display:flex;
+  flex-direction: row ;
+ 
+  justify-content:flex-end ;
+  cursor: url("../images/cursor.png"), auto;
+  transition: 0.3s ease;
+}
+
+.vert{
+  writing-mode: vertical-rl;
+  text-orientation:mixed;
+
+  transition: opacity 0.3s;
+}
+
+.vert2{
+  writing-mode: vertical-rl;
+  text-orientation:mixed;
+  transition: opacity 0.3s;
+}
+
+#glassContainer2 {
+  width: 35vw;
+  height: 70vh;
+  border: 0.2px solid #ddd !important;
+  z-index: 100;
+  position: fixed;
+  color: white;
+  border-radius: 1vw;
+  top: 15vh;
+  right: -31vw;
+  backdrop-filter: blur(0.3vw);
+  padding: 2vw;
+  padding-right: 4vh;
+  padding-left: 1vh;
+  padding-top: 4vh;
+  display:flex;
+  
+  flex-direction:row-reverse ;
+}
+.glassContainer {
+  
+}
+
+.gc {
+  transition: 0.2s ease-in-out;
+  opacity: 1;
+  overflow: hidden;
+  box-shadow: 0 0 1em 0.2em #a5a5a5;
+  transition: 0.2s ease-in-out;
+  z-index: 100;
+}
+
+.slidercontrols {
+  width: 100%;
+}
+
+#playPauseBtn {
+  background: transparent;
+  border: none;
+}
+
+#playPauseBtn img {
+  width: 1.2vw;
+  background: transparent;
+}
+
+button:hover,
+a:hover,
+input:hover {
+  cursor: url("../images/cursor2.png"), auto;
+}
+
+.zoomslider {
+  height: 30vh;
+  z-index: 101;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+#zoom-slider {
+  -webkit-appearance: none;
+  border-radius: 1vw;
+  background: #ddd;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.2s;
+  z-index: 10;
+  width: 0.5vw;
+}
+
+#zoom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 100%;
+  z-index: 102;
+}
+
+#date-slider {
+  width: 100%;
+}
+
+#selector {
+  height: 104px;
+  width: 48px;
+  position: absolute;
+  top: 0px;
+  margin-left: 48px;
+}
+
+.selectBtn {
+  width: 25px;
+  height: 25px;
+  background-image: url("Assets/images/timeimg.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  background-color: #ddd;
+  z-index: 5;
+  position: absolute;
+  top: 57px;
+}
+
+#selectValue {
+  width: 48px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  background: #ffffff;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#selectValue::after {
+  content: "";
+  border-top: 17px solid #ffffff;
+  border-left: 24px solid #000;
+  border-right: 24px solid #000;
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+}
+
+.solar-system {
+  position: absolute;
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  left: 0vw;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7vh;
+  z-index: 19;
+  transition: 0.3s ease;
+}
+
+.sun {
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px solid gray;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: none;
+}
+
+.mercury-orbit {
+  width: 150px;
+  height: 150px;
+  animation-duration: 2.41096s;
+}
+.venus-orbit {
+  width: 200px;
+  height: 200px;
+  animation-duration: 6.16438s;
+}
+.earth-orbit {
+  width: 250px;
+  height: 250px;
+  animation-duration: 10s;
+}
+.transfer-orbit {
+  width: 10vw; /* Horizontal diameter */
+  height: 14.3vw; /* Vertical diameter */
+  border: 3px dashed red;
+  border-radius: 100%;
+  /* border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+   */
+  position: absolute;
+  left: 0vw;
+  transform: translateX(1.5vw);
+}
+.mars-orbit {
+  width: 300px;
+  height: 300px;
+  animation-duration: 18.8219s;
+}
+.jupiter-orbit {
+  width: 400px;
+  height: 400px;
+  animation-duration: 118.7123s;
+}
+.saturn-orbit {
+  width: 500px;
+  height: 500px;
+  animation-duration: 294.76712s;
+}
+.uranus-orbit {
+  width: 600px;
+  height: 600px;
+  animation-duration: 840.73973s;
+}
+.neptune-orbit {
+  width: 700px;
+  height: 700px;
+  animation-duration: 1649.041s;
+}
+
+.planet {
+  width: 15px;
+  height: 15px;
+  background: gray;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 19;
+  transform-origin: center;
+  background-size: cover !important;
+}
+.planet,
+.orbit {
+  transition: opacity 0.5s ease-in-out !important;
+}
+
+.mercury {
+  width: 15px;
+  height: 15px;
+  margin-left: -7.5px;
+  margin-top: -82.5px;
+}
+
+.venus {
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -110px;
+}
+.earth {
+  transform: rotate(0deg);
+  width: 25px;
+  height: 25px;
+  margin-left: -12.5px;
+  margin-top: -137.5px;
+  border-radius: 100%;
+}
+.mars {
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -160px;
+  border-radius: 100%;
+}
+.future_mars {
+  border: 0.5px dashed yellow;
+  background: none;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -160px;
+}
+.jupiter {
+  width: 40px;
+  height: 40px;
+  margin-left: -17.5px;
+  margin-top: -217.5px;
+}
+.saturn {
+  background: url("../images/saturn.png") no-repeat center center;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -265px;
+}
+.uranus {
+  background: url("../images/uranus.png") no-repeat center center;
+  width: 25px;
+  height: 25px;
+  margin-left: -12.5px;
+  margin-top: -312.5px;
+}
+.neptune {
+  background: url("../images/neptune.png") no-repeat center center;
+  width: 25px;
+  height: 25px;
+  margin-left: -12.5px;
+  margin-top: -360px;
+}
+
+.controls {
+  display: block;
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  padding: 10px;
+  color: black;
+  width: 200px;
+  font-size: 1.5em;
+  z-index: 100;
+}
+
+#dateDisplay {
+  color: white;
+  font: 1.3px;
+}
+
+.controls input {
+  height: 25px;
+  font: 1.2em;
+}
+
+.controls button {
+  height: 25px;
+}
+
+#start-date {
+  position: fixed;
+  opacity: 0;
+}
+
+div.backBtn {
+  width: 6vw;
+  left: 2vw;
+  top: 4vh;
+  background-color: #f4f4f4;
+  color: white;
+  transition: all 0.4s ease;
+  position: fixed;
+  z-index: 100;
+}
+
+span.line {
+  bottom: auto;
+  right: auto;
+  top: auto;
+  left: auto;
+  background-color: #b3b3b3;
+  border-radius: 10px;
+  width: 100%;
+  left: 0px;
+  height: 5px;
+  display: block;
+  position: absolute;
+  transition: width 0.2s ease 0.1s, left 0.2s ease, transform 0.2s ease 0.3s,
+    background-color 0.2s ease;
+}
+
+span.tLine {
+  top: 0px;
+}
+
+span.mLine {
+  top: 13px;
+  opacity: 0;
+}
+
+span.bLine {
+  top: 31px;
+}
+
+.label {
+  position: absolute;
+  left: 0px;
+  top: 5px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.4s ease;
+  margin-bottom: 2px;
+  font-size: 2vh;
+}
+
+div.backBtn:hover span.label {
+  left: 25px;
+}
+
+div.backBtn:hover span.line {
+  left: -10px;
+  height: 5px;
+  background-color: #f76060;
+}
+
+div.backBtn:hover span.tLine {
+  width: 25px;
+  transform: rotate(-45deg);
+  left: -15px;
+  top: 6px;
+}
+
+div.backBtn:hover span.mLine {
+  opacity: 1;
+  width: 30px;
+}
+
+div.backBtn:hover span.bLine {
+  width: 25px;
+  transform: rotate(45deg);
+  left: -15px;
+  top: 20px;
+}
+
+.logo2 {
+  color: white;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff0000, 0 0 0.5em #ff5e00,
+    0 0 0.1em #721818, 0 8px 3px #000;
+}
+
+.logo {
+  color: white;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #9b9b9b, 0 0 0.5em #313131,
+    0 0 0.1em #721818, 0 8px 3px #000;
+}
+
+.custom-popover {
+  position: absolute;
+  background: url("../images/spaceBG.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 1vw;
+  padding: 10px;
+  z-index: 999 !important;
+  width: 24vw;
+  height: 25vh;
+  box-shadow: 0 0 1em 0.2em rgba(204, 204, 204, 0.712) !important ;
+}
+
+.custom-popover .popover-arrow {
+  position: absolute;
+  width: 0;
+  margin-left: -7px;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid rgb(255, 255, 255);
+
+  font-size: 1vw;
+}
+
+.custom-popover .popover-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: white solid 1px;
+}
+
+.custom-popover .popover-body {
+  color: white;
+}
+
+.custom-popover .btn {
+}
+
+#hidingBack {
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  background-color: #25252559;
+  z-index: 600;
+}
+
+#next-btn {
+  text-decoration: none;
+  height: 4vh;
+  transition: 0.3s ease-in;
+  width: 5vw;
+  background: transparent;
+  color: white;
+  font-size: 0.8vw;
+  text-transform: uppercase;
+  border: 1px solid rgb(146, 148, 248);
+  position: absolute;
+  bottom: 2vh;
+  right: 1vw;
+  overflow: hidden;
+}
+
+#next-btn:hover {
+  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+}
+
+#next-btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(146, 148, 248, 0.4),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+#next-btn:hover:before {
+  left: 100%;
+}

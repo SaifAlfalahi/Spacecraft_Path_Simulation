@@ -52,7 +52,7 @@ body {
   overflow: hidden;
   box-shadow: 0 0 1em 0.2em #ff0000;
   transition: 0.2s ease-in-out;
-  z-index: 1000;
+  z-index: 100;
 }
 
 
@@ -602,10 +602,9 @@ div.backBtn:hover span.bLine {
   border: 1px solid #ccc;
   border-radius: 1vw;
   padding: 10px;
-  z-index: 9999;
+  z-index: 999 !important;
   width: 24vw;
   height: 25vh;
-  box-shadow: 0 0 1em 0.2em rgba(204, 204, 204, 0.712) !important ;
 }
 
 .custom-popover .popover-arrow {
@@ -615,7 +614,7 @@ div.backBtn:hover span.bLine {
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-top: 15px solid rgb(255, 255, 255);
+  border-top: 15px solid rgb(255, 255, 255) !important ;
   
   font-size: 1vw;
 }
@@ -623,8 +622,9 @@ div.backBtn:hover span.bLine {
 .custom-popover .popover-header {
   font-weight: bold;
   margin-bottom: 10px;
+  text-align: center;
   border-bottom: white solid 1px; 
-
+  background-color: transparent;
 }
 
 .custom-popover .popover-body {
@@ -635,6 +635,15 @@ div.backBtn:hover span.bLine {
  
 }
 
+#hidingBack{
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  background-color: #25252559;
+  z-index: 600;
+
+
+}
 
 #next-btn {
   text-decoration: none;

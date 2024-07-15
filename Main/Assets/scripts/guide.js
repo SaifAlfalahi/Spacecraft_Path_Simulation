@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Guide script loaded");
   document.getElementById("playPauseBtn").click();
+  const hidingBack = document.getElementById("hidingBack");
 
   const steps = [
     {
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       element: document.querySelector(".placeholder"),
-      title: "Date Display & Controls",
+      title: "Finally...",
       content:
         "Here you can view the current date of the simulation, you can pause or play the simulation and it tells you if the current date is a launch date or not .",
     },
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const popover = document.createElement("div");
     popover.classList.add("custom-popover");
     popover.innerHTML = `
+              
               <div class="popover-arrow"></div>
               <div class="popover-header">
                   <h3>${step.title}</h3>
@@ -97,6 +99,8 @@ document.addEventListener("DOMContentLoaded", function () {
           showStep(currentStep);
         } else {
           document.getElementById("playPauseBtn").click();
+          hidingBack.style.setProperty('height', '0vh');
+
         }
       });
     } else {
