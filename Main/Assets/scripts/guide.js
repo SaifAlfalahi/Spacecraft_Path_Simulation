@@ -34,12 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       content:
         "Whenever there is a launch window you will notice all the red glowing colors will turn green. And you will notice that whenever there is a laucnch window, the postition of future mars is exactly opposite to earth.  .",
     },
-    {
-      element: document.querySelector(".placeholder"),
-      title: "Finally...",
-      content:
-        "Here you can view the current date of the simulation, you can pause or play the simulation and it tells you if the current date is a launch date or not .",
-    },
+    
   ];
 
   console.log("Steps:", steps);

@@ -451,7 +451,7 @@ div.backBtn:hover span.bLine {
 
 .glassContainer3 {
   width: 25vw;
-  height: 40vh;
+  height: 30vh;
   border: 0.2px solid #ddd !important;
   z-index: 100;
   position: fixed;
